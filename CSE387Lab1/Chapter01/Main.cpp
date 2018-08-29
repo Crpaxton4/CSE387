@@ -8,15 +8,15 @@
 
 #include "Game.h"
 
-int main( int argc, char** argv )
+int main(int argc, char** argv)
 {
 	Game game;
-	bool success = game.Initialize( );
+	bool success = game.Initialize();
 
-	if( success ) {
-		game.RunLoop( );
+	if (success) {
+		game.RunLoop();
 	}
 
-	game.Shutdown( );
+	game.Shutdown();
 	return 0;
 }
