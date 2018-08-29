@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CSE387Lab1/Chapter01/.vs/
+/CSE387Lab1/Chapter01/Chapter01-mac.xcodeproj/
+/CSE387Lab1/Chapter01/Debug/
+/CSE387Lab1/Chapter01/Release/
