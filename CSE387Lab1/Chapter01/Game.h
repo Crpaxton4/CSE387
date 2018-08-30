@@ -42,6 +42,8 @@ public:
 	// Shutdown the game
 	void Shutdown();
 
+	void drawCenterLine(int r, int g, int b, int a);
+
 private:
 	// Helper functions for the game loop
 	void ProcessInput();

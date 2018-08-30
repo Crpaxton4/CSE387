@@ -279,9 +279,33 @@ void Game::GenerateOutput() {
 				  ballThickness };
 	SDL_RenderFillRect(mRenderer, &ball);
 
+	drawCenterLine(133, 94, 66, 255);
+
 	// Swap front buffer and back buffer
 	SDL_RenderPresent(mRenderer);
 
+}
+
+void Game::drawCenterLine(int r, int g, int b, int a) {
+
+	SDL_SetRenderDrawColor(mRenderer,
+		r,
+		g,
+		b,
+		a 
+	);
+
+	for (int i = 0; i < 10; i++) {
+		SDL_Rect dash;
+
+		dash.x = windowWidth / 2 - horizontalThickness / 2;
+		dash.y = i * (windowHeight / 10);
+			
+		dash.w = horizontalThickness;
+		dash.h = static_cast<int>((float)windowHeight / 20.0f);
+
+		SDL_RenderFillRect(mRenderer, &dash);
+	}
 }
 
 void Game::Shutdown() {
