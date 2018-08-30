@@ -23,8 +23,8 @@ bool Game::Initialize() {
 		SDL_CreateWindow("CSE 387 Introduction (Chapter 1)",  // Window title
 			100,   // Top left x-coordinate of window
 			100,   // Top left y-coordinate of window
-			1024,  // Width of window
-			768,   // Height of window
+			windowWidth,  // Width of window
+			windowHeight,   // Height of window
 			windowFlags      // Flags
 		);
 
@@ -43,6 +43,8 @@ bool Game::Initialize() {
 		SDL_Log("Failed to create renderer: %s", SDL_GetError());
 		return false;
 	}
+
+	// TODO: use vec2 constructor to make this less busy
 
 	mLeftPaddlePos.x = LEFT_PADDLE_X;
 	mLeftPaddlePos.y = windowHeight / 2.0f;
@@ -78,8 +80,18 @@ void Game::ProcessInput() {
 			switch (event.window.event) {
 			case SDL_WINDOWEVENT_RESIZED:
 				SDL_GetWindowSize(mWindow, &windowWidth, &windowHeight);
+				float heightScaleRatio = (float)windowHeight / (float)DEFAULT_WINDOW_HEIGHT;
+				float widthScaleRatio = (float)windowWidth / (float)DEFAULT_WINDOW_WIDTH;
 
-				mRightPaddlePos.x = windowWidth - 10.0f;
+
+				//TODO: add a vertical thickness and a horizontal thickness so that the paddles and walls scale properly
+				
+				verticalThickness =  static_cast<int>(15.0f * heightScaleRatio);
+				horizontalThickness = static_cast<int>(15.0f * widthScaleRatio);
+				ballThickness = static_cast<int>(15.0f *((float)windowWidth + (float)windowHeight) / ((float)DEFAULT_WINDOW_WIDTH + (float)DEFAULT_WINDOW_HEIGHT));
+
+				// move right paddle
+				mRightPaddlePos.x = windowWidth - horizontalThickness - 10.0f;
 
 				break;
 			}
@@ -102,11 +114,11 @@ void Game::ProcessInput() {
 		mLeftPaddleDir = 1;
 	}
 
-	if (state[SDL_SCANCODE_UP]) {
+	if (state[SDL_SCANCODE_I]) {
 		mRightPaddleDir = -1;
 	}
 
-	if (state[SDL_SCANCODE_DOWN]) {
+	if (state[SDL_SCANCODE_K]) {
 		mRightPaddleDir = 1;
 	}
 
@@ -132,11 +144,11 @@ void Game::UpdateGame() {
 	if (mLeftPaddleDir != 0) {
 		mLeftPaddlePos.y += mLeftPaddleDir * PADDLE_SPEED * deltaTime;
 		// Make sure paddle doesn't move off screen!
-		if (mLeftPaddlePos.y < (PADDLE_HEIGHT / 2.0f + THICKNESS)) {
-			mLeftPaddlePos.y = PADDLE_HEIGHT / 2.0f + THICKNESS;
+		if (mLeftPaddlePos.y < (paddleHeight / 2.0f + horizontalThickness)) {
+			mLeftPaddlePos.y = paddleHeight / 2.0f + horizontalThickness;
 		}
-		else if (mLeftPaddlePos.y > (windowHeight - PADDLE_HEIGHT / 2.0f - THICKNESS)) {
-			mLeftPaddlePos.y = windowHeight - PADDLE_HEIGHT / 2.0f - THICKNESS;
+		else if (mLeftPaddlePos.y > (windowHeight - paddleHeight / 2.0f - horizontalThickness)) {
+			mLeftPaddlePos.y = windowHeight - paddleHeight / 2.0f - horizontalThickness;
 		}
 	}
 
@@ -144,11 +156,11 @@ void Game::UpdateGame() {
 	if (mRightPaddleDir != 0) {
 		mRightPaddlePos.y += mRightPaddleDir * PADDLE_SPEED * deltaTime;
 		// Make sure paddle doesn't move off screen!
-		if (mRightPaddlePos.y < (PADDLE_HEIGHT / 2.0f + THICKNESS)) {
-			mRightPaddlePos.y = PADDLE_HEIGHT / 2.0f + THICKNESS;
+		if (mRightPaddlePos.y < (paddleHeight / 2.0f + horizontalThickness)) {
+			mRightPaddlePos.y = paddleHeight / 2.0f + horizontalThickness;
 		}
-		else if (mRightPaddlePos.y > (windowHeight - PADDLE_HEIGHT / 2.0f - THICKNESS)) {
-			mRightPaddlePos.y = windowHeight - PADDLE_HEIGHT / 2.0f - THICKNESS;
+		else if (mRightPaddlePos.y > (windowHeight - paddleHeight / 2.0f - horizontalThickness)) {
+			mRightPaddlePos.y = windowHeight - paddleHeight / 2.0f - horizontalThickness;
 		}
 	}
 
@@ -165,7 +177,7 @@ void Game::UpdateGame() {
 
 	if (
 		// Our y-difference is small enough
-		diffLeft <= PADDLE_HEIGHT / 2.0f &&
+		diffLeft <= paddleHeight / 2.0f &&
 		// We are in the correct x-position
 		mBallPos.x <= 25.0f && mBallPos.x >= 20.0f &&
 		// The ball is moving to the left
@@ -174,7 +186,7 @@ void Game::UpdateGame() {
 		mBallVel.x *= -1.0f;
 	}
 
-	// Did we intersect with the left paddle?
+	// Did we intersect with the right paddle?
 	float diffRight = mRightPaddlePos.y - mBallPos.y;
 
 	// Take absolute value of difference
@@ -182,12 +194,13 @@ void Game::UpdateGame() {
 
 	if (
 		// Our y-difference is small enough
-		diffRight <= PADDLE_HEIGHT / 2.0f &&
+		diffRight <= paddleHeight / 2.0f &&
 		// We are in the correct x-position
-		mBallPos.x >= windowWidth - THICKNESS - 10.0f && mBallPos.x <= windowWidth - THICKNESS - 5.0f && 
-		// This colission math is semi arbitraty so for consistency its a difference of 5.0f for some reason
-		// The ball dips a little past an objects borders (the math leads me to believe 10.0f past the border)
-		// I believe that is where the 'random' difference of 5 insead of THICKNESS (which is 15.0f)
+		mBallPos.x >= windowWidth - horizontalThickness - 10.0f && mBallPos.x <= windowWidth - horizontalThickness - 5.0f && 
+		
+		/// This colission math is semi arbitraty so for consistency its a difference of 5.0f for some reason
+		/// The ball dips a little past an objects borders (the math leads me to believe 10.0f past the border)
+		///  I believe that is where the 'random' difference of 5 insead of THICKNESS (which is 15.0f)
 
 		// The ball is moving to the Right
 		mBallVel.x > 0.0f) {
@@ -201,22 +214,12 @@ void Game::UpdateGame() {
 		mIsRunning = false;
 	}
 
-	//TODO: Check if ball hsa gone off the right side of the screen
-
-	// No longer a right wall
-	/*Did the ball collide with the right wall?
-	else if (mBallPos.x >= (windowWidth- THICKNESS) && mBallVel.x > 0.0f) {
-		mBallVel.x *= -1.0f;
-	}
-	*/
-
-
 	// Did the ball collide with the top wall?
-	if (mBallPos.y <= THICKNESS && mBallVel.y < 0.0f) {
+	if (mBallPos.y <= verticalThickness && mBallVel.y < 0.0f) {
 		mBallVel.y *= -1;
 	}
 	// Did the ball collide with the bottom wall?
-	else if (mBallPos.y >= (windowHeight - THICKNESS) && mBallVel.y > 0.0f) {
+	else if (mBallPos.y >= (windowHeight - verticalThickness) && mBallVel.y > 0.0f) {
 		mBallVel.y *= -1;
 	}
 
@@ -225,11 +228,12 @@ void Game::UpdateGame() {
 }
 
 void Game::GenerateOutput() {
+
 	// Set draw color to blue
 	SDL_SetRenderDrawColor(mRenderer,
-		0,    // R
-		0,    // G
-		255,  // B
+		166,  // R
+		128,  // G
+		100,  // B
 		255   // A
 	);
 
@@ -237,50 +241,47 @@ void Game::GenerateOutput() {
 	SDL_RenderClear(mRenderer);
 
 	// Draw walls
-	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(mRenderer, 
+		183, // R
+		65,  // G
+		14,  // B
+		255  // A
+	);
 
 	// Draw top wall
 	SDL_Rect wall{
 		0,         // Top left x
 		0,         // Top left y
 		windowWidth,      // Width
-		THICKNESS  // Height
+		verticalThickness  // Height
 	};
 	SDL_RenderFillRect(mRenderer, &wall);
 
 	// Draw bottom wall
-	wall.y = windowHeight - THICKNESS;
+	wall.y = windowHeight - verticalThickness;
 	SDL_RenderFillRect(mRenderer, &wall);
-
-	/* No more right wall
-	// Draw right wall
-	wall.x = windowWidth - THICKNESS;
-	wall.y = 0;
-	wall.w = THICKNESS;
-	wall.h = windowHeight;
-	SDL_RenderFillRect(mRenderer, &wall);
-	*/
 
 	// Draw left paddle
 	SDL_Rect leftPaddle{ static_cast<int>(mLeftPaddlePos.x),
-					static_cast<int>(mLeftPaddlePos.y - PADDLE_HEIGHT / 2), THICKNESS,
-					static_cast<int>(PADDLE_HEIGHT) };
+					static_cast<int>(mLeftPaddlePos.y - paddleHeight / 2), horizontalThickness,
+					static_cast<int>(paddleHeight) };
 	SDL_RenderFillRect(mRenderer, &leftPaddle);
 
 	// Draw Right paddle
 	SDL_Rect rightPaddle{ static_cast<int>(mRightPaddlePos.x),
-					static_cast<int>(mRightPaddlePos.y - PADDLE_HEIGHT / 2), THICKNESS,
-					static_cast<int>(PADDLE_HEIGHT) };
+					static_cast<int>(mRightPaddlePos.y - paddleHeight / 2), horizontalThickness,
+					static_cast<int>(paddleHeight) };
 	SDL_RenderFillRect(mRenderer, &rightPaddle);
 
 	// Draw ball
-	SDL_Rect ball{ static_cast<int>(mBallPos.x - THICKNESS / 2),
-				  static_cast<int>(mBallPos.y - THICKNESS / 2), THICKNESS,
-				  THICKNESS };
+	SDL_Rect ball{ static_cast<int>(mBallPos.x - ballThickness / 2),
+				  static_cast<int>(mBallPos.y - ballThickness / 2), ballThickness,
+				  ballThickness };
 	SDL_RenderFillRect(mRenderer, &ball);
 
 	// Swap front buffer and back buffer
 	SDL_RenderPresent(mRenderer);
+
 }
 
 void Game::Shutdown() {

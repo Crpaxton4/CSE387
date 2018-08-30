@@ -58,17 +58,22 @@ private:
 	Uint32 mTicksCount = 0;
 
 	// Window Variables
-	int windowHeight = 768;
-	int windowWidth = 1024;
+	const int DEFAULT_WINDOW_WIDTH = 1024;
+	const int DEFAULT_WINDOW_HEIGHT = 768;
+	int windowWidth = DEFAULT_WINDOW_WIDTH;
+	int windowHeight = DEFAULT_WINDOW_HEIGHT;
+	
 
 	// Game variables
-	const vec2 DEFAULT_BALL_VEL = vec2(100.0f, 135.0f);
+	const vec2 DEFAULT_BALL_VEL = vec2(50.0f, 75.0f);
 	const float LEFT_PADDLE_X = 10.0;
-	const int THICKNESS = 15;
-	const float PADDLE_HEIGHT = 100.0f;
+	int verticalThickness = 15;
+	int horizontalThickness = 15;
+	float paddleHeight = 100.0f;
 	const float PADDLE_SPEED = 300.0;
+	int ballThickness = static_cast<int>(15.0f *((float)windowWidth + (float)windowHeight) / ((float)DEFAULT_WINDOW_WIDTH + (float)DEFAULT_WINDOW_HEIGHT));
 
-	float rightPaddleX = windowWidth - THICKNESS - 10.0f;
+	float rightPaddleX = windowWidth - horizontalThickness - 10.0f;
 
 	// Game should continue to run
 	bool mIsRunning = true;
