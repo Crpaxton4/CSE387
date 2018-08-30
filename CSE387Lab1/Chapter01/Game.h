@@ -32,7 +32,6 @@ using glm::vec4;
 // Game class
 class Game {
 public:
-	Game();
 
 	// Initialize the game
 	bool Initialize();
@@ -56,25 +55,31 @@ private:
 	SDL_Renderer* mRenderer = nullptr;
 
 	// Number of ticks since start of game
-	Uint32 mTicksCount;
+	Uint32 mTicksCount = 0;
 
-	// Game constsnts
-	const float WINDOW_HEIGHT = 768.0;
-	const float WINDOW_WIDTH = 1024.0;
-	const vec2 DEFAULT_BALL_VEL = vec2(-200.0f, 235.0f);
-	const float PADDLE_X = 10.0;
+	// Window Variables
+	int windowHeight = 768;
+	int windowWidth = 1024;
+
+	// Game variables
+	const vec2 DEFAULT_BALL_VEL = vec2(100.0f, 135.0f);
+	const float LEFT_PADDLE_X = 10.0;
 	const int THICKNESS = 15;
 	const float PADDLE_HEIGHT = 100.0f;
+	const float PADDLE_SPEED = 300.0;
 
+	float rightPaddleX = windowWidth - THICKNESS - 10.0f;
 
 	// Game should continue to run
-	bool mIsRunning;
+	bool mIsRunning = true;
 
 	// Pong specific
-	// Direction of paddle
-	int mPaddleDir;
-	// Position of paddle
-	vec2 mPaddlePos;
+	// Direction of paddles
+	int mLeftPaddleDir = 0;
+	int mRightPaddleDir = 0;
+	// Position of paddles
+	vec2 mLeftPaddlePos;
+	vec2 mRightPaddlePos;
 	// Position of ball
 	vec2 mBallPos;
 	// Velocity of ball
