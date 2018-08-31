@@ -85,8 +85,8 @@ void Game::ProcessInput() {
 
 
 				//TODO: add a vertical thickness and a horizontal thickness so that the paddles and walls scale properly
-				
-				verticalThickness =  static_cast<int>(15.0f * heightScaleRatio);
+
+				verticalThickness = static_cast<int>(15.0f * heightScaleRatio);
 				horizontalThickness = static_cast<int>(15.0f * widthScaleRatio);
 				ballThickness = static_cast<int>(15.0f *((float)windowWidth + (float)windowHeight) / ((float)DEFAULT_WINDOW_WIDTH + (float)DEFAULT_WINDOW_HEIGHT));
 
@@ -196,8 +196,8 @@ void Game::UpdateGame() {
 		// Our y-difference is small enough
 		diffRight <= paddleHeight / 2.0f &&
 		// We are in the correct x-position
-		mBallPos.x >= windowWidth - horizontalThickness - 10.0f && mBallPos.x <= windowWidth - horizontalThickness - 5.0f && 
-		
+		mBallPos.x >= windowWidth - horizontalThickness - 10.0f && mBallPos.x <= windowWidth - horizontalThickness - 5.0f &&
+
 		/// This colission math is semi arbitraty so for consistency its a difference of 5.0f for some reason
 		/// The ball dips a little past an objects borders (the math leads me to believe 10.0f past the border)
 		///  I believe that is where the 'random' difference of 5 insead of THICKNESS (which is 15.0f)
@@ -241,7 +241,7 @@ void Game::GenerateOutput() {
 	SDL_RenderClear(mRenderer);
 
 	// Draw walls
-	SDL_SetRenderDrawColor(mRenderer, 
+	SDL_SetRenderDrawColor(mRenderer,
 		183, // R
 		65,  // G
 		14,  // B
@@ -292,17 +292,18 @@ void Game::drawCenterLine(int r, int g, int b, int a) {
 		r,
 		g,
 		b,
-		a 
+		a
 	);
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 22; i+=2) {
+		
 		SDL_Rect dash;
 
-		dash.x = windowWidth / 2 - horizontalThickness / 2;
-		dash.y = i * (windowHeight / 10);
-			
 		dash.w = horizontalThickness;
-		dash.h = static_cast<int>((float)windowHeight / 20.0f);
+		dash.h = (windowHeight - 2 * verticalThickness) / 20;
+
+		dash.x = windowWidth/2 - horizontalThickness/2;
+		dash.y = verticalThickness/2 + (i * dash.h);
 
 		SDL_RenderFillRect(mRenderer, &dash);
 	}
