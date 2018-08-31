@@ -64,7 +64,7 @@ private:
 	const int DEFAULT_WINDOW_HEIGHT = 768;
 	int windowWidth = DEFAULT_WINDOW_WIDTH;
 	int windowHeight = DEFAULT_WINDOW_HEIGHT;
-	
+
 
 	// Game variables
 	const vec2 DEFAULT_BALL_VEL = vec2(200.0f, 300. 0f);

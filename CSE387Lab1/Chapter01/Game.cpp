@@ -295,15 +295,15 @@ void Game::drawCenterLine(int r, int g, int b, int a) {
 		a
 	);
 
-	for (int i = 0; i < 22; i+=2) {
-		
+	for (int i = 0; i < 22; i += 2) {
+
 		SDL_Rect dash;
 
 		dash.w = horizontalThickness;
 		dash.h = (windowHeight - 2 * verticalThickness) / 20;
 
-		dash.x = windowWidth/2 - horizontalThickness/2;
-		dash.y = verticalThickness/2 + (i * dash.h);
+		dash.x = windowWidth / 2 - horizontalThickness / 2;
+		dash.y = verticalThickness / 2 + (i * dash.h);
 
 		SDL_RenderFillRect(mRenderer, &dash);
 	}
