@@ -67,7 +67,7 @@ private:
 
 
 	// Game variables
-	const vec2 DEFAULT_BALL_VEL = vec2(200.0f, 300. 0f);
+	const vec2 DEFAULT_BALL_VEL = vec2(200.0f, 300.0f);
 	const float LEFT_PADDLE_X = 10.0;
 	int verticalThickness = 15;
 	int horizontalThickness = 15;
