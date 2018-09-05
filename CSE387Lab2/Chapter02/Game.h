@@ -73,6 +73,7 @@ class Game
 	const unsigned int mWindowPositionY = 100;
 	const unsigned int mWindowWidth = 1024;
 	const unsigned int mWindowHeight = 768;
+	std::string windowTitle;
 
 	// Game-specific
 	class Ship* mShip; // Player's ship

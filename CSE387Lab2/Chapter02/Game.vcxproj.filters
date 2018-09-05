@@ -31,6 +31,9 @@
     <ClCompile Include="BGSpriteComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpaceGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -57,5 +60,6 @@
     <ClInclude Include="MathLibsConstants.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpaceGame.h" />
   </ItemGroup>
 </Project>

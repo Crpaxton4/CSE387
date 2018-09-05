@@ -24,7 +24,7 @@ bool Game::Initialize( )
 	}
 
 	// Create an SDL Window. Exit if unsucessful
-	mWindow = SDL_CreateWindow( "CSE387 Game Objects", mWindowPositionX, mWindowPositionY, mWindowWidth, mWindowHeight, 0 );
+	mWindow = SDL_CreateWindow( windowTitle, mWindowPositionX, mWindowPositionY, mWindowWidth, mWindowHeight, 0 );
 
 	if( !mWindow ) {
 		SDL_Log( "Failed to create window: %s", SDL_GetError( ) );
