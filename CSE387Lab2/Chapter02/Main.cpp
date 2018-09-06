@@ -6,16 +6,16 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
-#include "Game.h"
+#include "SpaceGame.h"
 
 int main(int argc, char** argv)
 {
-	Game game;
-	bool success = game.Initialize();
+	SpaceGame sgame("CSE 387 paxtoncr Lab 2");
+	bool success = sgame.Initialize();
 	if (success)
 	{
-		game.RunLoop();
+		sgame.RunLoop();
 	}
-	game.Shutdown();
+	sgame.Shutdown();
 	return 0;
 }

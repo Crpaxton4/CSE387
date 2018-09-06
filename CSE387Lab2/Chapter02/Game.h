@@ -37,11 +37,10 @@ class Game
 	// Loads textures for a specified path and file name
 	SDL_Texture* GetTexture( const std::string& fileName );
 
-	private:
+	protected:
 	void ProcessInput( );
 	void UpdateGame( );
 	void GenerateOutput( );
-	void LoadData( );
 	void UnloadData( );
 
 	// Map of textures loaded
@@ -73,8 +72,5 @@ class Game
 	const unsigned int mWindowPositionY = 100;
 	const unsigned int mWindowWidth = 1024;
 	const unsigned int mWindowHeight = 768;
-	std::string windowTitle;
-
-	// Game-specific
-	class Ship* mShip; // Player's ship
+	std::string windowTitle = "Space";
 };

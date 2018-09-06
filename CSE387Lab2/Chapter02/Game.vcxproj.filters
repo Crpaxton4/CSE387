@@ -60,6 +60,8 @@
     <ClInclude Include="MathLibsConstants.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpaceGame.h" />
+    <ClInclude Include="SpaceGame.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

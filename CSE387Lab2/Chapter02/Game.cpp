@@ -24,7 +24,7 @@ bool Game::Initialize( )
 	}
 
 	// Create an SDL Window. Exit if unsucessful
-	mWindow = SDL_CreateWindow( windowTitle, mWindowPositionX, mWindowPositionY, mWindowWidth, mWindowHeight, 0 );
+	mWindow = SDL_CreateWindow( windowTitle.c_str(), mWindowPositionX, mWindowPositionY, mWindowWidth, mWindowHeight, 0 );
 
 	if( !mWindow ) {
 		SDL_Log( "Failed to create window: %s", SDL_GetError( ) );
@@ -43,9 +43,6 @@ bool Game::Initialize( )
 		SDL_Log( "Unable to initialize SDL_image: %s", SDL_GetError( ) );
 		return false;
 	}
-
-	// Initialize the game
-	LoadData( );
 
 	// Get unsigned 32-bit value representing the number of milliseconds
 	// since the SDL library initialized
@@ -85,6 +82,7 @@ void Game::ProcessInput( )
 		mIsRunning = false;
 	}
 
+	//Override this in Space Game: Call super then call this in SpaceGame::processInput
 	// Process ship input
 	mShip->ProcessKeyboard( state );
 }
@@ -155,45 +153,6 @@ void Game::GenerateOutput( )
 
 	// Swap front buffer and back buffer
 	SDL_RenderPresent( mRenderer );
-}
-
-void Game::LoadData( )
-{
-	// Create player's ship
-	mShip = new Ship( this );
-	mShip->SetPosition( vec2( 100.0f, 384.0f ) );
-	mShip->SetScale( 1.5f );
-
-	// Create actor for the background (this doesn't need a subclass)
-	Actor* temp = new Actor( this );
-
-	// Set position to the center of the window
-	temp->SetPosition( vec2( mWindowWidth/2, mWindowHeight/2 ) );
-	
-	// Create the "far back" background component to for the temp Actor
-	BGSpriteComponent* bg = new BGSpriteComponent( temp );
-
-	// Set the size of the background component to match the window dimensions
-	bg->SetScreenSize( vec2( mWindowWidth, mWindowHeight ) );
-
-	// Create a vector of textures and get them loaded
-	std::vector<SDL_Texture*> bgtexs = {
-		GetTexture( "Assets/Farback01.png" ),
-		GetTexture( "Assets/Farback02.png" )
-	};
-
-	bg->SetBGTextures( bgtexs );
-	bg->SetScrollSpeed( -100.0f );
-
-	// Create the closer background
-	bg = new BGSpriteComponent( temp, 50 );
-	bg->SetScreenSize( vec2( mWindowWidth, mWindowHeight ) );
-	bgtexs = {
-		GetTexture( "Assets/Stars.png" ),
-		GetTexture( "Assets/Stars.png" )
-	};
-	bg->SetBGTextures( bgtexs );
-	bg->SetScrollSpeed( -200.0f );
 }
 
 void Game::UnloadData( )
