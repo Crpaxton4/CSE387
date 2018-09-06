@@ -38,10 +38,11 @@ class Game
 	SDL_Texture* GetTexture( const std::string& fileName );
 
 	protected:
-	void ProcessInput( );
+	void virtual ProcessInput( );
 	void UpdateGame( );
 	void GenerateOutput( );
-	void UnloadData( );
+	void virtual LoadData();
+	void virtual UnloadData( );
 
 	// Map of textures loaded
 	std::unordered_map<std::string, SDL_Texture*> mTextures;

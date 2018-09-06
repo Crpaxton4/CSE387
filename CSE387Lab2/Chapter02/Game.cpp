@@ -48,6 +48,8 @@ bool Game::Initialize( )
 	// since the SDL library initialized
 	mTicksCount = SDL_GetTicks( );
 
+	LoadData();
+
 	return true;
 }
 
@@ -62,29 +64,7 @@ void Game::RunLoop( )
 
 void Game::ProcessInput( )
 {
-	SDL_Event event;
-	// Keep processing events until the queue is empty
-	while( SDL_PollEvent( &event ) ) {
-		switch( event.type ) {
-
-			// If we get an SDL_QUIT event, end the game loop
-			case SDL_QUIT:
-				std::cout << "Window closed. Quitting." << std::endl;
-				mIsRunning = false;
-				break;
-		}
-	}
-
-	// Get state of keyboard
-	const Uint8* state = SDL_GetKeyboardState( NULL );
-	// If escape was pressed, end the game loop
-	if( state[SDL_SCANCODE_ESCAPE] ) {
-		mIsRunning = false;
-	}
-
-	//Override this in Space Game: Call super then call this in SpaceGame::processInput
-	// Process ship input
-	mShip->ProcessKeyboard( state );
+	// Function needs to be overridden. Probably bad practice.
 }
 
 void Game::UpdateGame( )
@@ -153,6 +133,10 @@ void Game::GenerateOutput( )
 
 	// Swap front buffer and back buffer
 	SDL_RenderPresent( mRenderer );
+}
+
+void Game::LoadData() {
+	// Function needs to be overridden. Probably bad practice
 }
 
 void Game::UnloadData( )

@@ -13,8 +13,10 @@ class SpaceGame : public Game
 public:
 	// Abstract out parts of Game class that are specific tothis game
 	SpaceGame(std::string windowTitle);
-	void LoadData();
-	bool Initialize();
+	void LoadData() override;
+	void UnloadData() override;
+	void ProcessInput() override;
+	//bool Initialize() override;
 
 private:
 	// Game-specific
