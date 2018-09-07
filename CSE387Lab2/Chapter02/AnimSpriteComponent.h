@@ -9,6 +9,7 @@
 #pragma once
 #include "SpriteComponent.h"
 #include <vector>
+
 class AnimSpriteComponent : public SpriteComponent
 {
 	public:
@@ -16,7 +17,7 @@ class AnimSpriteComponent : public SpriteComponent
 	AnimSpriteComponent( class Actor* owner, int drawOrder = 100 );
 
 	// Update animation every frame (overriden from component)
-	void Update( float deltaTime ) override;
+	void virtual Update( float deltaTime ) override;
 
 	// Set the textures used for animation
 	void SetAnimTextures( const std::vector<SDL_Texture*>& textures );
