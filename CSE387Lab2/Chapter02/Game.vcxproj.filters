@@ -66,8 +66,5 @@
     <ClInclude Include="SpaceGame.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteSheetSprite.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
