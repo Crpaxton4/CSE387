@@ -20,6 +20,7 @@
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="SpaceGame.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
+    <ClCompile Include="SpriteSheetSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="Ship.h" />
     <ClInclude Include="SpaceGame.h" />
     <ClInclude Include="SpriteComponent.h" />
+    <ClInclude Include="SpriteSheetSprite.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BC508D87-495F-4554-932D-DD68388B63CC}</ProjectGuid>
