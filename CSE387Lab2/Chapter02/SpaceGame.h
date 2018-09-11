@@ -1,7 +1,8 @@
 #pragma once
 #include "SDL/SDL.h"
 #include "Game.h"
-#include "Ship.h"
+#include "SpriteSheetActor.h"
+#include "BGSpriteComponent.h"
 #include <iostream>
 #include <unordered_map>
 #include <string>
@@ -16,10 +17,19 @@ public:
 	void LoadData() override;
 	void UnloadData() override;
 	void ProcessInput() override;
-	//bool Initialize() override;
 
 private:
 	// Game-specific
-	Ship* mShip; // Player's ship
+	SpriteSheetActor* player; // Player	
+	Actor* BGActor;
+	BGSpriteComponent* bg;
+	BGSpriteComponent* stars;
+
+	float bgSpeed = -100.0f;
+	
+	
+	
+
+
 };
 

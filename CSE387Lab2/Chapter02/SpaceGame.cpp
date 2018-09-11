@@ -10,13 +10,6 @@ SpaceGame::SpaceGame(std::string windowTitle) {
 	this->windowTitle = windowTitle;
 }
 
-//bool SpaceGame::Initialize() {
-//	bool b = Game::Initialize();
-//	LoadData();
-//	return b;
-
-//}
-
 void SpaceGame::ProcessInput() {
 	SDL_Event event;
 	// Keep processing events until the queue is empty
@@ -38,26 +31,40 @@ void SpaceGame::ProcessInput() {
 		mIsRunning = false;
 	}
 
+	if (state[SDL_SCANCODE_LEFT]) {
+		bgSpeed -= 10;
+		if(bgSpeed > -10) bgSpeed = -10; //cap the scrolling speed
+		bg->SetScrollSpeed(bgSpeed);
+		stars->SetScrollSpeed(2 * bgSpeed);
+	}
+
+	if (state[SDL_SCANCODE_RIGHT]) {
+		bgSpeed += 10;
+		if(bgSpeed < -200) bgSpeed = -200; // Cap the scrolling speed
+		bg->SetScrollSpeed(bgSpeed);
+		stars->SetScrollSpeed(2*bgSpeed);
+	}
+
 	//Override this in Space Game: Call super then call this in SpaceGame::processInput
 	// Process ship input
-	mShip->ProcessKeyboard(state);
+	player->ProcessKeyboard(state);
 }
 
 void SpaceGame::LoadData()
 {
 	// Create player's ship
-	mShip = new Ship(this);
-	mShip->SetPosition(vec2(100.0f, 384.0f));
-	mShip->SetScale(1.5f);
+	player = new SpriteSheetActor(this);
+	player->SetPosition(vec2(100.0f, 384.0f));
+	player->SetScale(1.5f);
 
 	// Create actor for the background (this doesn't need a subclass)
-	Actor* temp = new Actor(this);
+	BGActor = new Actor(this);
 
 	// Set position to the center of the window
-	temp->SetPosition(vec2(mWindowWidth / 2, mWindowHeight / 2));
+	BGActor->SetPosition(vec2(mWindowWidth / 2, mWindowHeight / 2));
 
 	// Create the "far back" background component to for the temp Actor
-	BGSpriteComponent* bg = new BGSpriteComponent(temp);
+	bg = new BGSpriteComponent(BGActor);
 
 	// Set the size of the background component to match the window dimensions
 	bg->SetScreenSize(vec2(mWindowWidth, mWindowHeight));
@@ -72,14 +79,14 @@ void SpaceGame::LoadData()
 	bg->SetScrollSpeed(-100.0f);
 
 	// Create the closer background
-	bg = new BGSpriteComponent(temp, 50);
-	bg->SetScreenSize(vec2(mWindowWidth, mWindowHeight));
-	bgtexs = {
+	stars = new BGSpriteComponent(BGActor, 50);
+	stars->SetScreenSize(vec2(mWindowWidth, mWindowHeight));
+	std::vector<SDL_Texture*> starstexs = {
 		GetTexture("Assets/Stars.png"),
 		GetTexture("Assets/Stars.png")
 	};
-	bg->SetBGTextures(bgtexs);
-	bg->SetScrollSpeed(-200.0f);
+	stars->SetBGTextures(starstexs);
+	stars->SetScrollSpeed(2*bgSpeed);
 }
 
 void SpaceGame::UnloadData()  {

@@ -2,27 +2,33 @@
 #include "Actor.h"
 #include "Game.h"
 
-MultiAnimSpriteComponent::MultiAnimSpriteComponent(Actor* owner, int drawOrder, SDL_Texture* TextureSheet)
+MultiAnimSpriteComponent::MultiAnimSpriteComponent(Actor* owner, int numFramesPerRow, int numRows, int drawOrder)
 	:AnimSpriteComponent(owner, drawOrder)
 {
-	SpriteComponent::SetTexture(TextureSheet);
+	framesPerRow = numFramesPerRow;
+	rows = numRows;
 }
 
 void MultiAnimSpriteComponent::Draw(SDL_Renderer* renderer) {
-	if (mTexture) {
+	if (SpriteComponent::getTexture()) {
+
 		SDL_Rect spriteBoundingRec;
 		// Scale the width/height by owner's scale
-		spriteBoundingRec.w = static_cast<int>(mTexWidth * mOwner->GetScale());
-		spriteBoundingRec.h = static_cast<int>(mTexHeight * mOwner->GetScale());
+		spriteBoundingRec.w = static_cast<int>(frameWidth * mOwner->GetScale());
+		spriteBoundingRec.h = static_cast<int>(frameHeight * mOwner->GetScale());
 		// Center the rectangle around the position of the owner
 		spriteBoundingRec.x = static_cast<int>(mOwner->GetPosition().x - spriteBoundingRec.w / 2);
 		spriteBoundingRec.y = static_cast<int>(mOwner->GetPosition().y - spriteBoundingRec.h / 2);
 
+
+		SDL_Rect rect;
+		getCurrAnimSrcRect(rect);
+
 		// Draw (have to convert angle from radians to degrees, and clockwise to counter)
 		// See https://wiki.libsdl.org/SDL_RenderCopyEx
 		SDL_RenderCopyEx(renderer,
-			mTexture,
-			getCurrAnimSrcRect(), // Override because srcRect is now needed as the whole texture is not used
+			SpriteComponent::getTexture(),
+			&rect, // srcRect is now needed as the whole texture is not used
 			&spriteBoundingRec,
 			-glm::degrees(mOwner->GetRotation()),
 			nullptr,
@@ -48,6 +54,14 @@ void MultiAnimSpriteComponent::Update(float deltaTime) {
 
 }
 
+void MultiAnimSpriteComponent::SetTexture(SDL_Texture* spriteSheet) {
+	SpriteComponent::SetTexture(spriteSheet);
+
+	frameWidth = SpriteComponent::GetTexWidth() / framesPerRow;
+	frameHeight = SpriteComponent::GetTexHeight() / rows;
+
+}
+
 void MultiAnimSpriteComponent::setAnimations(std::vector<Animation> anims) {
 	animations = anims;
 	defaultAnim = animations[0];
@@ -55,21 +69,31 @@ void MultiAnimSpriteComponent::setAnimations(std::vector<Animation> anims) {
 
 
 void MultiAnimSpriteComponent::setCurrentAnimation(int index) {
-
-	currAnim = animations[index];
-	mCurrFrame = 0.0f;
+	if (index != animIndex) {
+		animIndex = index;
+		currAnim = animations[index];
+		mCurrFrame = 0.0f;
+	}
 
 }
 
-SDL_Rect* MultiAnimSpriteComponent::getCurrAnimSrcRect() {
-	SDL_Rect srcRect;
+void MultiAnimSpriteComponent::getCurrAnimSrcRect(SDL_Rect &rect) {
 
-	int framesPerRow = mTexWidth / frameWidth;
+	rect.x = frameWidth * ((currAnim.startIndex + static_cast<int>(mCurrFrame)) % framesPerRow);
+	rect.y = frameHeight * ((currAnim.startIndex + static_cast<int>(mCurrFrame)) / framesPerRow);
+	rect.w = frameWidth;
+	rect.h = frameHeight;
 
-	srcRect.x = frameWidth * ((currAnim.startIndex + static_cast<int>(mCurrFrame)) % framesPerRow);
-	srcRect.y = std::floor(srcRect.x / framesPerRow);
-	srcRect.w = frameWidth;
-	srcRect.h = frameHeight;
+	std::cout << "X: " << rect.x <<
+	std::endl << "Y: " << rect.y <<
+	std::endl << "W: " << rect.w <<
+	std::endl << "H: " << rect.h << std::endl;
+
+	std::cout << static_cast<int>(mCurrFrame) << std::endl;
+}
+
+void MultiAnimSpriteComponent::startIdleState() {
+	currAnim = defaultAnim;
 }
 
 

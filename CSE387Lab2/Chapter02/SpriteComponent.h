@@ -22,7 +22,8 @@ public:
 	int GetDrawOrder() const { return mDrawOrder; }
 	int GetTexHeight() const { return mTexHeight; }
 	int GetTexWidth() const { return mTexWidth; }
-protected:
+	SDL_Texture* getTexture() const { return mTexture; }
+private:
 	SDL_Texture* mTexture = nullptr;
 	int mDrawOrder;
 	int mTexWidth = 0;
