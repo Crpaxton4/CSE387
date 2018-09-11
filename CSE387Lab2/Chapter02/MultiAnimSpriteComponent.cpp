@@ -7,6 +7,7 @@ MultiAnimSpriteComponent::MultiAnimSpriteComponent(Actor* owner, int numFramesPe
 {
 	framesPerRow = numFramesPerRow;
 	rows = numRows;
+	AnimSpriteComponent::SetAnimFPS(6.0f);
 }
 
 void MultiAnimSpriteComponent::Draw(SDL_Renderer* renderer) {
@@ -94,6 +95,7 @@ void MultiAnimSpriteComponent::getCurrAnimSrcRect(SDL_Rect &rect) {
 
 void MultiAnimSpriteComponent::startIdleState() {
 	currAnim = defaultAnim;
+	animIndex = 0;
 }
 
 

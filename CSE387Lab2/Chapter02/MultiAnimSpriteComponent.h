@@ -14,6 +14,7 @@ public:
 	void setAnimations(std::vector<Animation> anims);
 	void setDefaultAnim(int index) { defaultAnim = animations[index]; }
 	void startIdleState();
+	int getAnimIndex() { return animIndex; }
 
 
 private:

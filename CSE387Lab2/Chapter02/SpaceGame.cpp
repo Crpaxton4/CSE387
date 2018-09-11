@@ -32,15 +32,15 @@ void SpaceGame::ProcessInput() {
 	}
 
 	if (state[SDL_SCANCODE_LEFT]) {
-		bgSpeed -= 10;
-		if(bgSpeed > -10) bgSpeed = -10; //cap the scrolling speed
+		bgSpeed -= 2;
+		if (bgSpeed < -300) bgSpeed = -300; // Cap the scrolling speed
 		bg->SetScrollSpeed(bgSpeed);
 		stars->SetScrollSpeed(2 * bgSpeed);
 	}
 
 	if (state[SDL_SCANCODE_RIGHT]) {
-		bgSpeed += 10;
-		if(bgSpeed < -200) bgSpeed = -200; // Cap the scrolling speed
+		bgSpeed += 2;
+		if (bgSpeed > -10) bgSpeed = -10; //cap the scrolling speed
 		bg->SetScrollSpeed(bgSpeed);
 		stars->SetScrollSpeed(2*bgSpeed);
 	}

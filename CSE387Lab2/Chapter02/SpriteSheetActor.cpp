@@ -15,7 +15,7 @@ SpriteSheetActor::SpriteSheetActor(Game* game)
 
 	std::vector<Animation> anims = {
 		Animation(0, 1), // Default (idle) animation. Actor faces fromt and does nothing
-		Animation(0, 4),
+		Animation(0, 4), 
 		Animation(4, 4),
 		Animation(8, 4),
 		Animation(12, 4)
@@ -60,33 +60,33 @@ void SpriteSheetActor::ProcessKeyboard(const uint8_t* state) {
 	verticalSpeed = 0.0f;
 
 	// right/left
-	if (state[SDL_SCANCODE_D])
+	if (state[SDL_SCANCODE_D]) // Walk right animation on 'd' press
 	{
 		lateralSpeed += 250.0f;
 		animationComponent->setCurrentAnimation(4);
 	}
-	if (state[SDL_SCANCODE_A])
+	if (state[SDL_SCANCODE_A]) // walk left animation on 'a' press
 	{
 		lateralSpeed -= 250.0f;
 		animationComponent->setCurrentAnimation(3);
 	}
 	// up/down
-	if (state[SDL_SCANCODE_S])
+	if (state[SDL_SCANCODE_S]) // walk 'down' animation on 's' press
 	{
 		verticalSpeed += 300.0f;
-		if (lateralSpeed == 0) { // dont have a diagonal animation so if it is moving up and sidewways play the sideways animation
+		if (lateralSpeed == 0 && animationComponent->getAnimIndex() != 1) { // dont have a diagonal animation so if it is moving up and sidewways play the sideways animation
 			animationComponent->setCurrentAnimation(1);
 		}
 	}
-	if (state[SDL_SCANCODE_W])
+	if (state[SDL_SCANCODE_W]) // Walk 'up' animation on 'w' press
 	{
 		verticalSpeed -= 300.0f;
-		if (lateralSpeed == 0) { // dont have a diagonal animation so if it is moving up and sidewways play the sideways animation
+		if (lateralSpeed == 0 && animationComponent->getAnimIndex() != 2) { // dont have a diagonal animation so if it is moving up and sidewways play the sideways animation
 			animationComponent->setCurrentAnimation(2);
 		}
 	}
 
-	if (lateralSpeed == 0 && verticalSpeed == 0) {
+	if (lateralSpeed == 0 && verticalSpeed == 0) { // when no key is pressed it runs the idle 'animation' (only the first frame of the sprite sheet)
 		animationComponent->startIdleState();
 	}
 }
