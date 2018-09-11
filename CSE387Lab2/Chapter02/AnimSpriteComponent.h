@@ -26,7 +26,7 @@ class AnimSpriteComponent : public SpriteComponent
 	float GetAnimFPS( ) const { return mAnimFPS; }
 	void SetAnimFPS( float fps ) { mAnimFPS = fps; }
 	
-	private:
+	protected:
 
 	// All textures in the animation
 	std::vector<SDL_Texture*> mAnimTextures;

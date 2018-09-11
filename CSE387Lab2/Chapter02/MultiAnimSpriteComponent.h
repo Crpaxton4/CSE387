@@ -5,17 +5,23 @@
 class MultiAnimSpriteComponent : public AnimSpriteComponent
 {
 public:
-	MultiAnimSpriteComponent();
-	~MultiAnimSpriteComponent();
+	MultiAnimSpriteComponent(Actor* owner, int drawOrder, SDL_Texture* TextureSheet);
 
-	void Draw(SDL_Renderer* renderer) override;
 	void Update(float deltaTime) override;
+	void Draw(SDL_Renderer* renderer) override;
+	void setCurrentAnimation(int index);
+	void setAnimations(std::vector<Animation> anims);
+	void setDefaultAnim(int index){defaultAnim = animations[index];};
+
 
 private:
+	SDL_Rect* getCurrAnimSrcRect();
 	int frameHeight;
 	int frameWidth;
 
 	// Collection of individual animations in the sprite sheet
 	std::vector<Animation> animations;
+	Animation defaultAnim;
+	Animation currAnim;
 };
 
