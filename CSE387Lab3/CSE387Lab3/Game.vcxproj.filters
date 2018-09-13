@@ -43,6 +43,12 @@
     <ClCompile Include="Laser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CannonBallActor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicalMovementComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -81,5 +87,9 @@
     <ClInclude Include="MathLibsConstsFuncs.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="CannonBallActor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicalMovementComponent.h" />
   </ItemGroup>
 </Project>

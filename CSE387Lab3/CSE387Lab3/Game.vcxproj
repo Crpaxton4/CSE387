@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="CannonBallActor.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -20,6 +21,7 @@
     <ClCompile Include="Laser.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="PhysicalMovementComponent.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
@@ -27,6 +29,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Asteroid.h" />
+    <ClInclude Include="CannonBallActor.h" />
     <ClInclude Include="CircleComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
@@ -34,6 +37,7 @@
     <ClInclude Include="Laser.h" />
     <ClInclude Include="MathLibsConstsFuncs.h" />
     <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="PhysicalMovementComponent.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="SpriteComponent.h" />

@@ -14,6 +14,7 @@
 #include "Ship.h"
 #include "Asteroid.h"
 #include "Random.h"
+#include "CannonBallActor.h"
 
 Game::Game()
 :mWindow(nullptr)
@@ -160,17 +161,19 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
-	// Create player's ship
-	mShip = new Ship(this);
-	mShip->SetPosition(vec2(512.0f, 384.0f));
-	mShip->SetRotation(PI_OVER_2);
+	//// Create player's ship
+	//mShip = new Ship(this);
+	//mShip->SetPosition(vec2(512.0f, 384.0f));
+	//mShip->SetRotation(PI_OVER_2);
 
-	// Create asteroids
-	const int numAsteroids = 20;
-	for (int i = 0; i < numAsteroids; i++)
-	{
-		new Asteroid(this);
-	}
+	//// Create asteroids
+	//const int numAsteroids = 20;
+	//for (int i = 0; i < numAsteroids; i++)
+	//{
+	//	new Asteroid(this);
+	//}
+	CannonBallActor* cb = new CannonBallActor(this);
+	cb->SetPosition(vec2(100, 600));
 }
 
 void Game::UnloadData()
