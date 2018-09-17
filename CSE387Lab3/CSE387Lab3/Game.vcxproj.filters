@@ -90,6 +90,8 @@
     <ClInclude Include="CannonBallActor.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicalMovementComponent.h" />
+    <ClInclude Include="PhysicalMovementComponent.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
