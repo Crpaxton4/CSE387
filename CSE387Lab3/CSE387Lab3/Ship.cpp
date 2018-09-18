@@ -12,7 +12,7 @@
 #include "Game.h"
 #include "Laser.h"
 #include "Asteroid.h"
-#include <windows.h>
+#include <iostream>
 
 Ship::Ship(Game* game)
 	:Actor(game)
@@ -23,15 +23,16 @@ Ship::Ship(Game* game)
 	mSprite->SetTexture(game->GetTexture("Assets/Ship.png"));
 
 	mCircle = new CircleComponent(this);
-	mCircle->SetRadius(11.0f);
+	mCircle->SetRadius(20.0f);
 
 	// Create an input component and set keys/speed
-	InputComponent* ic = new InputComponent(this);
+	ic = new InputComponent(this, 5.0f);
 	ic->SetForwardKey(SDL_SCANCODE_W);
 	ic->SetBackKey(SDL_SCANCODE_S);
 	ic->SetClockwiseKey(SDL_SCANCODE_A);
 	ic->SetCounterClockwiseKey(SDL_SCANCODE_D);
 	ic->SetMaxForwardSpeed(300.0f);
+	ic->SetMaxImpulse(2000.0f);
 	ic->SetMaxAngularSpeed(TWO_PI);
 }
 
@@ -43,7 +44,16 @@ void Ship::UpdateActor(float deltaTime)
 
 		if (mDeadTimer >= 2.0f) { // death delay is over
 			GetGame()->AddSprite(mSprite);
+			AddComponent(mSprite); // Prevents exception when game is exeted while ship is 'dead'
+			ic->Reset();
 			mDeadTimer = 0.0f;
+
+
+			// Reset ship position and orientation
+			SetPosition(vec2(512.0f, 384.0f));
+			SetRotation(PI_OVER_2);
+
+
 			mDead = false; //now alive
 		}
 	}
@@ -51,12 +61,11 @@ void Ship::UpdateActor(float deltaTime)
 		for (auto ast : GetGame()->GetAsteroids()) {
 			if (Intersect(*mCircle, *(ast->GetCircle()))) {
 				mDead = true;
-				// Reset ship position and orientation
-				SetPosition(vec2(512.0f, 384.0f));
-				SetRotation(PI_OVER_2);
 
 				// remove the sprite from the game
 				GetGame()->RemoveSprite(mSprite);
+				RemoveComponent(mSprite);  // Prevents exception when game is exeted while ship is 'dead'
+				RemoveComponent(mSprite);  // Prevents exception when game is exeted while ship is 'dead'
 				break;
 			}
 		}
@@ -67,6 +76,9 @@ void Ship::UpdateActor(float deltaTime)
 
 void Ship::ActorInput(const uint8_t* keyState)
 {
+
+	if (mDead) return; // save a little computation and dont do specific input if dead
+
 	if (keyState[SDL_SCANCODE_SPACE] && mLaserCooldown <= 0.0f)
 	{
 		// Create a laser and set its position/rotation to mine
@@ -74,6 +86,7 @@ void Ship::ActorInput(const uint8_t* keyState)
 		laser->SetPosition(GetPosition());
 		laser->SetRotation(GetRotation());
 
+		laser->Launch();
 		// Reset laser cooldown (half second)
 		mLaserCooldown = 0.5f;
 	}

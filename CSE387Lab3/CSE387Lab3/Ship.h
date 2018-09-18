@@ -10,6 +10,7 @@
 #include "Actor.h"
 #include "SpriteComponent.h"
 #include "CircleComponent.h"
+#include "InputComponent.h"
 class Ship : public Actor
 {
 public:
@@ -23,4 +24,5 @@ private:
 	bool mDead = false;
 	SpriteComponent* mSprite;
 	CircleComponent* mCircle;
+	InputComponent* ic;
 };

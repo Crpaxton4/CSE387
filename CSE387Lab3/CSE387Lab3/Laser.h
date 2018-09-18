@@ -12,9 +12,11 @@ class Laser : public Actor
 {
 public:
 	Laser(class Game* game);
-
+	void Launch();
 	void UpdateActor(float deltaTime) override;
 private:
+	
 	class CircleComponent* mCircle;
+	class MoveComponent* mc;
 	float mDeathTimer;
 };
