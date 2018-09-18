@@ -9,8 +9,8 @@
 #include "InputComponent.h"
 #include "Actor.h"
 
-InputComponent::InputComponent(class Actor* owner)
-:MoveComponent(owner)
+InputComponent::InputComponent(class Actor* owner, float mass)
+:MoveComponent(owner, mass)
 ,mForwardKey(0)
 ,mBackKey(0)
 ,mClockwiseKey(0)
@@ -22,16 +22,16 @@ InputComponent::InputComponent(class Actor* owner)
 void InputComponent::ProcessInput(const uint8_t* keyState)
 {
 	// Calculate forward speed for MoveComponent
-	float forwardSpeed = 0.0f;
+	float magnitude = 0.0f;
 	if (keyState[mForwardKey])
 	{
-		forwardSpeed += mMaxForwardSpeed;
+		magnitude += GetMaxImpulse();
 	}
 	if (keyState[mBackKey])
 	{
-		forwardSpeed -= mMaxForwardSpeed;
+		magnitude -= GetMaxImpulse();
 	}
-	SetForwardSpeed(forwardSpeed);
+	AddForce(magnitude);
 
 	// Calculate angular speed for MoveComponent
 	float angularSpeed = 0.0f;
@@ -44,4 +44,5 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 		angularSpeed -= mMaxAngularSpeed;
 	}
 	SetAngularSpeed(angularSpeed);
+	
 }
