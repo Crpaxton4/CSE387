@@ -28,7 +28,13 @@ Enemy::Enemy(class Game* game)
 	MoveComponent* mc = new MoveComponent(this);
 	mc->SetForwardSpeed(200);
 
-	InputComponent* ic = new InputComponent();
+	InputComponent* ic = new InputComponent(this);
+	ic->SetForwardKey(SDL_SCANCODE_W);
+	ic->SetBackKey(SDL_SCANCODE_S);
+	ic->SetClockwiseKey(SDL_SCANCODE_D);
+	ic->SetCounterClockwiseKey(SDL_SCANCODE_A);
+	ic->SetMaxAngularSpeed(300.0f);
+	ic->SetAngularSpeed(PI_OVER_2);
 
 	//// Set position at start tile
 	//SetPosition(GetGame()->GetGrid()->GetStartTile()->GetPosition());

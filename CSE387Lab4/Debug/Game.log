@@ -1,4 +1,6 @@
 ﻿  Enemy.cpp
+  InputComponent.cpp
+  Generating Code...
   Game.vcxproj -> C:\Users\paxtoncr\Source\Repos\CSE387\CSE387Lab4\Debug\Game.exe
   C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab4\\..\external\SDL\lib\win\x86\libfreetype-6.dll
   C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab4\\..\external\SDL\lib\win\x86\libogg-0.dll
