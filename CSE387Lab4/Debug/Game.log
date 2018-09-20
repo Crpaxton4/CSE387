@@ -1,23 +1,4 @@
-﻿  Actor.cpp
-  AIComponent.cpp
-  AIState.cpp
-  AnimSpriteComponent.cpp
-  Bullet.cpp
-  CircleComponent.cpp
-  Component.cpp
-  Enemy.cpp
-  Game.cpp
-  Grid.cpp
-  Main.cpp
-  MoveComponent.cpp
-  MultiAnimSpriteComponent.cpp
-  NavComponent.cpp
-  Search.cpp
-  SpriteComponent.cpp
-  SpriteSheetAnimCompnent.cpp
-  Tile.cpp
-  Tower.cpp
-  Generating Code...
+﻿  Enemy.cpp
   Game.vcxproj -> C:\Users\paxtoncr\Source\Repos\CSE387\CSE387Lab4\Debug\Game.exe
   C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab4\\..\external\SDL\lib\win\x86\libfreetype-6.dll
   C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab4\\..\external\SDL\lib\win\x86\libogg-0.dll

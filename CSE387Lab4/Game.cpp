@@ -174,7 +174,9 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
+	Enemy* enemy = new Enemy(this);
 
+	enemy->SetPosition(vec2(100, 100));
 
 }
 
