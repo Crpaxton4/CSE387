@@ -1,0 +1,53 @@
+// ----------------------------------------------------------------
+// From Game Programming in C++ by Sanjay Madhav
+// Copyright (C) 2017 Sanjay Madhav. All rights reserved.
+// 
+// Released under the BSD License
+// See LICENSE in root directory for full details.
+// ----------------------------------------------------------------
+
+#include "Tower.h"
+#include "SpriteComponent.h"
+#include "MoveComponent.h"
+#include "AStarGame.h"
+#include "Enemy.h"
+#include "Bullet.h"
+
+Tower::Tower(class Game* game)
+:Actor(game)
+{
+	SpriteComponent* sc = new SpriteComponent(this, 200);
+	sc->SetTexture(game->GetTexture("Assets/Tower.png"));
+	
+	mMove = new MoveComponent(this);
+	//mMove->SetAngularSpeed(Math::Pi);
+	
+	mNextAttack = AttackTime;
+}
+
+void Tower::UpdateActor(float deltaTime)
+{
+	Actor::UpdateActor(deltaTime);
+	
+	mNextAttack -= deltaTime;
+	if (mNextAttack <= 0.0f)
+	{
+		Enemy* e = ((AStarGame*)GetGame())->GetNearestEnemy(GetPosition());
+		if (e != nullptr)
+		{
+			// Vector from me to enemy
+			vec2 dir = e->GetPosition() - GetPosition();
+			float dist = glm::length( dir );
+			if (dist < AttackRange)
+			{
+				// Rotate to face enemy
+				SetRotation(atan2(-dir.y, dir.x));
+				// Spawn bullet at tower position facing enemy
+				Bullet* b = new Bullet(( AStarGame*)GetGame());
+				b->SetPosition(GetPosition());
+				b->SetRotation(GetRotation());
+			}
+		}
+		mNextAttack += AttackTime;
+	}
+}
