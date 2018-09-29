@@ -6,11 +6,11 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
-#include "AStarGame.h"
+#include "Project1Game.h"
 
 int main(int argc, char** argv)
 {
-	AStarGame game;
+	Project1Game game;
 	bool success = game.Initialize();
 	if (success)
 	{

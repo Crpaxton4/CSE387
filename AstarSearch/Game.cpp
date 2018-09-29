@@ -38,7 +38,7 @@ bool Game::Initialize()
 		return false;
 	}
 	
-	mWindow = SDL_CreateWindow("CSE 387 Artificial Intelligence", 100, 100, 1024, 768, 0);
+	mWindow = SDL_CreateWindow("CSE 387 Artificial Intelligence", 100, 100, windowWidth, windowHeight, 0);
 	if (!mWindow)
 	{
 		SDL_Log("Failed to create window: %s", SDL_GetError());

@@ -1,43 +1,17 @@
-﻿  Actor.cpp
-  AIComponent.cpp
-  AIState.cpp
-  AnimSpriteComponent.cpp
-  AStarGame.cpp
-  Bullet.cpp
-  CircleComponent.cpp
-  Component.cpp
-  Enemy.cpp
-  EqualWeightEdgeGraph.cpp
-  Game.cpp
-  Grid.cpp
-  Guard.cpp
-  GuardAIComponent.cpp
-  InputComponent.cpp
-  Main.cpp
-  MoveComponent.cpp
-  MultiAnimSpriteComponent.cpp
-  MyMultiActor.cpp
-  NavComponent.cpp
-  Generating Code...
-  Compiling...
-  PhysicalMovementComponent.cpp
-  Random.cpp
-  SpriteComponent.cpp
-  SpriteSheetAnimCompnent.cpp
-  Tile.cpp
-  Tower.cpp
-  Generating Code...
-  Game.vcxproj -> C:\Users\paxtoncr\Source\Repos\CSE387\AstarSearch\Debug\Game.exe
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libfreetype-6.dll
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libogg-0.dll
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libpng16-16.dll
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libvorbis-0.dll
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libvorbisfile-3.dll
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\SDL2.dll
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\SDL2_image.dll
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\SDL2_mixer.dll
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\SDL2_ttf.dll
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\zlib1.dll
+﻿  Walker.cpp
+c:\users\chris\documents\repositories\cse387\astarsearch\walker.cpp(29): warning C4018: '<': signed/unsigned mismatch
+c:\users\chris\documents\repositories\cse387\astarsearch\walker.cpp(43): warning C4018: '<': signed/unsigned mismatch
+  Game.vcxproj -> C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\Debug\Game.exe
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libfreetype-6.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libogg-0.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libpng16-16.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libvorbis-0.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libvorbisfile-3.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\SDL2.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\SDL2_image.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\SDL2_mixer.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\SDL2_ttf.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\zlib1.dll
   10 File(s) copied
-  C:\Users\paxtoncr\source\repos\CSE387\AstarSearch\\..\external\GLEW\lib\win\x86\glew32.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\GLEW\lib\win\x86\glew32.dll
   1 File(s) copied

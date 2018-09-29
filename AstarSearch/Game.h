@@ -55,5 +55,8 @@ protected:
 	// Track if we're updating actors right now
 	bool mUpdatingActors;
 
+	int windowHeight = 768;
+	int windowWidth = 1024;
+
 
 };

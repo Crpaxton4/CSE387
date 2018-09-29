@@ -85,6 +85,15 @@
     <ClCompile Include="EqualWeightEdgeGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Project1Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Walker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -163,6 +172,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="EqualWeightEdgeGraph.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Project1Game.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Walker.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
