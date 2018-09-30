@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "Plane.h"
 #include "Background.h"
+#include "Spawner.h"
 
 
 Project1Game::Project1Game() :Game()
@@ -39,12 +40,8 @@ void Project1Game::LoadData() {
 	walker->SetScale(0.75f);
 
 	SetWalker(walker);
-	//Create Barriers in the middle of the area. Not sure of layout currently
-
 	//Create enemy Base in the top right corner (no need to add enemies because base handles that)
-	Plane* p = new Plane(this);
-	p->SetPosition(vec2(500, 500));
-	addEnemy(p);
+	Spawner* spawn = new Spawner(this);
 	//possibly create background, but may just use solid colors
 	Background* bg = new Background(this);
 }
@@ -69,6 +66,9 @@ void Project1Game::RemoveEnemy(Enemy* e) {
 	{
 		// Swap to end of vector and pop off (avoid erase copies)
 		std::iter_swap(iter, enemies.end() - 1);
+
+		Enemy* e = enemies[enemies.size() - 1];
+		e->SetState(Actor::EDead);
 		enemies.pop_back();
 	}
 }

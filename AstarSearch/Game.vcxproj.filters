@@ -31,19 +31,7 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Grid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MoveComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NavComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AIComponent.cpp">
@@ -55,16 +43,7 @@
     <ClCompile Include="MultiAnimSpriteComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyMultiActor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteSheetAnimCompnent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Guard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GuardAIComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputComponent.cpp">
@@ -74,12 +53,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Random.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AStarGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EqualWeightEdgeGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Project1Game.cpp">
@@ -98,6 +71,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Background.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -123,19 +102,7 @@
     <ClInclude Include="Enemy.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="MoveComponent.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NavComponent.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tower.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="AIComponent.h">
@@ -156,28 +123,13 @@
     <ClInclude Include="SpriteSheetAnimCompnent.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyMultiActor.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Random.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AStarGame.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Guard.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GuardAIComponent.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="InputComponent.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="PhysicalMovementComponent.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EqualWeightEdgeGraph.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Project1Game.h">
@@ -196,6 +148,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,7 +12,7 @@ public:
 	Plane(class Project1Game* game);
 	void changeAnimation(std::string animation);
 	~Plane();
-
+	void Damage(bool missile = false) override;
 private:
 	float missileCooldown;
 	float hitTimer;

@@ -52,6 +52,15 @@ void Plane::changeAnimation(std::string animation) {
 	SSc->PlayAnimation(animation);
 }
 
+void Plane::Damage(bool missile) {
+	if (missile) totalHealth -= 2;
+	else totalHealth -= 1;
+
+	if (totalHealth <= 0) {
+		AIc->ChangeState("Death");
+	}
+}
+
 Plane::~Plane()
 {
 }

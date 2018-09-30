@@ -10,6 +10,8 @@
 #include "AIComponent.h"
 #include "Project1Game.h"
 #include "Walker.h"
+#include "Missile.h"
+#include "Actor.h"
 #include <iostream>
 #include <SDL/SDL_log.h>
 #include <Windows.h>
@@ -69,7 +71,9 @@ void PlaneDeath::OnEnter()
 {
 	SDL_Log("Entering %s state", GetName());
 
-	// mark this actor ad dead
+	// mark this actor as dead
+	//gameOwner->RemoveEnemy(planeOwner);
+	planeOwner->SetState(Actor::EDead);
 }
 
 void PlaneDeath::OnExit()
@@ -86,15 +90,26 @@ void PlaneAttack::Update(float deltaTime)
 
 	Walker* w = gameOwner->getWalker();
 	float dist = glm::distance(w->GetPosition(), planeOwner->GetPosition());
-
+	if (dist > attackRange) {
+		mOwner->ChangeState("Patrol");
+	}
 	float rotation = planeOwner->GetRotation();
 	vec2 atDir = w->GetPosition() - planeOwner->GetPosition();
 
 	planeOwner->SetRotation(atan2(-atDir.y, atDir.x) + PI/2.0f); // constant sprite is rotated 90 degrees so rotate it back
 
-	vec2 pos = planeOwner->GetPosition() + glm::normalize(w->GetPosition() - planeOwner->GetPosition()) * 10.0f;
+	vec2 pos = planeOwner->GetPosition() + glm::normalize(w->GetPosition() - planeOwner->GetPosition()) * 1.0f;
 
 	planeOwner->SetPosition(pos);
+
+	missileTimer -= deltaTime;
+
+	if (missileTimer <= 0) {
+		missileTimer = 8.0f;
+		//launch missile
+		Missile* m = new Missile(planeOwner->GetGame(), planeOwner->GetRotation(), false);
+		m->SetPosition(planeOwner->GetPosition());
+	}
 
 }
 

@@ -36,7 +36,7 @@ Missile::Missile(Game* game, float rotation, bool friendly)
 	SSc->AddAnimation("explode", explode, false);
 
 	Cc = new CircleComponent(this);
-	Cc->SetRadius(56.0f);
+	Cc->SetRadius(32.0f);
 
 	PMc = new PhysicalMovementComponent(this, 25.0f, 0.1f, MAX_SPEED/3.0f);
 
@@ -61,15 +61,35 @@ void Missile::UpdateActor(float deltaTime) {
 
 	if (FRIENDLY) {
 		PMc->addForce(GetForward()*MAX_SPEED/2.0f);
+		std::vector<Enemy*> enemies = ((Project1Game*)GetGame())->GetEnemies();
+		if (enemies.size() <= 0) return;
+
 		PMc->addForce(Seek(((Project1Game*)GetGame())->GetNearestEnemy(GetPosition())->GetPosition()));
+				
+		for (Enemy* e : enemies)
+		{
+			if (Intersect(*Cc, *(e->GetCircle())))
+			{
+				e->Damage(true);
+				deathTimer = 5.0f; //makes sure it is considered dead
+				break;
+			}
+		}
 	}
 	else {
 
 		Project1Game* g = (Project1Game*)GetGame();
-		Actor* w = g->getWalker();
+		Walker* w = g->getWalker();
 		vec2 wPos = w->GetPosition();
 		
 		PMc->addForce(Seek(wPos));
+
+		if (Intersect(*Cc, *(w->GetCircle())))
+		{
+
+			w->Damage(GetPosition(), true);
+			deathTimer = 5.0f; //makes sure it is considered dead
+		}
 	}
 	
 

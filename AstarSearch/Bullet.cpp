@@ -43,8 +43,7 @@ void Bullet::UpdateActor(float deltaTime)
 			{
 				// We both die on collision
 				// TODO: Just damage enemy on hit and enemy will destroy itsef
-				((Project1Game*)GetGame())->RemoveEnemy(e);
-				e->SetState(EDead);
+				e->Damage();
 				SetState(EDead);
 				break;
 			}
@@ -52,8 +51,9 @@ void Bullet::UpdateActor(float deltaTime)
 	}
 	else {
 		Walker* w = ((Project1Game*)GetGame())->getWalker();
-		if (Intersect(*Cc, *(w->getCircle()))) {
-
+		if (Intersect(*Cc, *(w->GetCircle()))) {
+			w->Damage(GetPosition());
+			SetState(EDead);
 		}
 	}
 

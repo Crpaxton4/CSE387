@@ -17,7 +17,9 @@ public:
 	~Enemy();
 	virtual void UpdateActor(float deltaTime) override;
 	class CircleComponent* GetCircle() { return Cc; }
+	virtual void Damage(bool missile = false);
 	
 protected:
 	CircleComponent* Cc;
+	int totalHealth;
 };

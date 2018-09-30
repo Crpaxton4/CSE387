@@ -74,4 +74,7 @@ public:
 	{
 		return "Attack";
 	}
+
+private:
+	float missileTimer;
 };

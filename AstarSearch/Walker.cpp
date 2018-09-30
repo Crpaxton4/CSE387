@@ -11,7 +11,7 @@ Walker::Walker(Project1Game* game)
 	:Actor(game),
 	laserCooldown(0.0f),
 	missileCooldown(0.0f),
-	hits(0),
+	totalHealth(8),
 	hitTimer(0.0f)
 {
 	SSc = new SpriteSheetAnimCompnent(this, false, 150);
@@ -43,10 +43,11 @@ Walker::Walker(Project1Game* game)
 	}
 
 	//Create idle animations
+	int idleFrame;
 	for (int i = 0; i < animationNames.size(); i++) {
 		// neutral frames found in the sprite sheet
 		// they happen to be in predictable places which is nice
-		int idleFrame;
+		
 		if (i < 4) idleFrame = 10;
 		else idleFrame = 2;
 
@@ -220,4 +221,23 @@ void Walker::ActorInput(const uint8_t* keyState) {
 		SSc->PlayAnimation(curAnim);
 	}
 
+}
+
+void Walker::Damage( vec2 projectilePos, bool missile) {
+	if (missile) totalHealth -= 2;
+	else totalHealth -= 1;
+
+	std::cout << "Walker Health: " << totalHealth << std::endl;
+
+	//hit effect
+	PMc->addForce(projectilePos - this->GetPosition() * 5000.0f);
+	hitTimer = 0.5f;
+	if (!idling) curAnim += "-idle";
+	moveVector = vec2(0.0f, 0.0f);
+	idling = true;
+
+	if (totalHealth <= 0) {
+		// Game Over
+		GetGame()->End();
+	}
 }

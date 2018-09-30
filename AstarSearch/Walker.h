@@ -13,14 +13,15 @@ public:
 	Walker(class Project1Game* game);
 	void ActorInput(const uint8_t* keyState) override;
 	void UpdateActor(float deltaTime) override;
-	CircleComponent* getCircle() { return Cc; }
+	CircleComponent* GetCircle() { return Cc; }
+	void Damage(vec2 projectilePos, bool missile = false);
 
 private:
 	float laserCooldown;
 	float missileCooldown;
 	float speed = 150.0f;
 	bool mDead = false;
-	int hits;
+	int totalHealth;
 	std::string curAnim;
 	bool idling;
 	float hitTimer;

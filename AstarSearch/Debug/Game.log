@@ -1,15 +1,6 @@
-﻿  Background.cpp
-  Bullet.cpp
-  Enemy.cpp
-  Game.cpp
-  Main.cpp
-  Missile.cpp
-  PlaneStates.cpp
-  Project1Game.cpp
-  Walker.cpp
-c:\users\chris\documents\repositories\cse387\astarsearch\walker.cpp(32): warning C4018: '<': signed/unsigned mismatch
-c:\users\chris\documents\repositories\cse387\astarsearch\walker.cpp(46): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+﻿  Spawner.cpp
+c:\users\chris\documents\repositories\cse387\astarsearch\spawner.cpp(27): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\chris\documents\repositories\cse387\astarsearch\spawner.cpp(30): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
   Game.vcxproj -> C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\Debug\Game.exe
   C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libfreetype-6.dll
   C:\Users\Chris\Documents\Repositories\CSE387\AstarSearch\\..\external\SDL\lib\win\x86\libogg-0.dll
