@@ -20,28 +20,31 @@ struct SpriteSheetAnimation
 
 class SpriteSheetAnimCompnent : public SpriteComponent
 {
-	public:
+public:
 
 	// Constructor
-	SpriteSheetAnimCompnent( class Actor* owner, int drawOrder = 100 );
+	SpriteSheetAnimCompnent(class Actor* owner, bool useRotation = true, int drawOrder = 100);
 
 	// Draw method that uses a source rectangle
-	virtual void Draw( SDL_Renderer* renderer ) override;
+	virtual void Draw(SDL_Renderer* renderer) override;
 
 	// Update animation every frame (overriden from component)
-	void Update( float deltaTime ) override;
+	void Update(float deltaTime) override;
 
 	// Set the textures used for animation
-	void AddAnimation( const std::string animationName, SpriteSheetAnimation animation, bool calcFrameSize = true );
+	void AddAnimation(const std::string animationName, SpriteSheetAnimation animation, bool calcFrameSize = true);
 
 	// Plays the animation with the specified name.
-	void PlayAnimation( const std::string animationName );
+	void PlayAnimation(const std::string animationName);
 
 	// Set/get the animation FPS
-	void SetFlip( SDL_RendererFlip flip ) { mFlip = flip; }
-	SDL_RendererFlip GetFlip( ) const { return mFlip; }
+	void SetFlip(SDL_RendererFlip flip) { mFlip = flip; }
+	SDL_RendererFlip GetFlip() const { return mFlip; }
 
-	protected:
+	void useRotation() { rotation = true; }
+	void noRotation() { rotation = false; }
+
+protected:
 
 	// Map containing the animations represented at Animation
 	std::unordered_map< std::string, SpriteSheetAnimation > mAnimationMap;
@@ -56,7 +59,7 @@ class SpriteSheetAnimCompnent : public SpriteComponent
 	SDL_Rect sourceRectangle;
 
 	// Set the source rectangle for the next image in the sprite sheet
-	void GetNextAnimationFrame( );
+	void GetNextAnimationFrame();
 
 	// Total time current frame displayed
 	float frameTime = 0.0f;
@@ -70,5 +73,7 @@ class SpriteSheetAnimCompnent : public SpriteComponent
 	// Sprites can be fliped both horizontally (SDL_FLIP_HORIZONTAL) 
 	// and vertically (SDL_FLIP_VERTICAL)
 	SDL_RendererFlip mFlip = SDL_FLIP_NONE;
+
+	bool rotation;
 };
 

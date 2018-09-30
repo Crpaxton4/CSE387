@@ -1,17 +1,20 @@
 #include "Walker.h"
 #include "SpriteSheetAnimCompnent.h"
 #include "Project1Game.h"
+#include "Missile.h"
+#include "Bullet.h"
 #include <iostream>
 
 
 
-Walker::Walker(Game* game)
+Walker::Walker(Project1Game* game)
 	:Actor(game),
 	laserCooldown(0.0f),
 	missileCooldown(0.0f),
-	hits(0)
+	hits(0),
+	hitTimer(0.0f)
 {
-	SSc = new SpriteSheetAnimCompnent(this, 150);
+	SSc = new SpriteSheetAnimCompnent(this, false, 150);
 
 	std::vector<std::string> animationNames = {
 		"down",
@@ -41,7 +44,7 @@ Walker::Walker(Game* game)
 
 	//Create idle animations
 	for (int i = 0; i < animationNames.size(); i++) {
-		//just neutral frames found in the sprite sheet
+		// neutral frames found in the sprite sheet
 		// they happen to be in predictable places which is nice
 		int idleFrame;
 		if (i < 4) idleFrame = 10;
@@ -66,15 +69,27 @@ Walker::Walker(Game* game)
 	idling = true;
 	SSc->PlayAnimation(curAnim);
 
-
+	// Set up PhysicalMovementComponent for projectile impulses
+	PMc = new PhysicalMovementComponent(this, 1000.0f, 0.9f);
 }
 
 void Walker::UpdateActor(float deltaTime) {
+
+	//update timers
+	hitTimer -= deltaTime;
+	missileCooldown -= deltaTime;
+	laserCooldown -= deltaTime;
+
+	//update position
 	vec2 pos = GetPosition();
 	pos.x += speed * moveVector.x * deltaTime;
 	pos.y += speed * moveVector.y * deltaTime;
 
+	//-----------------IMPORTANT-------------------
+	//---------------------------------------------
 	//TODO: add resizing. get dimensions from game;
+	//---------------------------------------------
+	//-----------------IMPORTANT-------------------
 
 	float gHeight = 768.0f;
 	float gWidth = 1024.0f;
@@ -89,18 +104,22 @@ void Walker::UpdateActor(float deltaTime) {
 	{
 		pos.x = gWidth - padding;
 	}
-	if (pos.y < padding)
+	if (pos.y < 192.0f)
 	{
-		pos.y = padding;
+		pos.y = 192.0f; //Water line on background
 	}
 	else if (pos.y > gHeight - padding)
 	{
 		pos.y = gHeight-padding;
 	}
 	SetPosition(pos);
+	SetRotation(atan2(-moveVector.y, moveVector.x)); // update roation for explosion impact
+
 }
 
 void Walker::ActorInput(const uint8_t* keyState) {
+	//check hit timer. Dont allow input
+	if (hitTimer > 0.0f) return;
 
 	bool up, down, left, right, shootMissile, shootLaser, idle;
 
@@ -165,16 +184,40 @@ void Walker::ActorInput(const uint8_t* keyState) {
 		moveVector = vec2(-1.0f, 0.0f);
 	}
 
-	std::cout << curAnim << std::endl;
-	if (prevAnim != curAnim) {
-		SSc->PlayAnimation(curAnim);
-	}
-
 	if (shootLaser && laserCooldown <= 0.0f) {
 		// Spawn laser 
+		Bullet* b = new Bullet((Project1Game*)GetGame());
+		b->SetPosition(GetPosition());
+		b->SetRotation(GetRotation());
+
+		laserCooldown = 0.25f;
 	}
 
 	if (shootMissile && missileCooldown <= 0) {
 		// Spawn Missile
+		Missile* m = new Missile(GetGame(), GetRotation(), true);
+		m->SetPosition(GetPosition());
+
+		missileCooldown = 8.0f;
 	}
+
+	//----------------------------------
+	// TEST STATEMENTS. DELETE WHEN DONE
+	//----------------------------------
+
+	// This works and looks right. 
+	// Change getForward() to the vector between the two circle components (this-projectile)
+	if (keyState[SDL_SCANCODE_H]) {
+		PMc->addForce(this->GetForward() * -5000000.0f);
+		hitTimer = 0.5f;
+		if (!idling) curAnim += "-idle";
+		moveVector = vec2(0.0f, 0.0f);
+		idling = true;
+	}
+
+	//------------------------------------
+	if (prevAnim != curAnim) {
+		SSc->PlayAnimation(curAnim);
+	}
+
 }

@@ -43,9 +43,9 @@ void Tower::UpdateActor(float deltaTime)
 				// Rotate to face enemy
 				SetRotation(atan2(-dir.y, dir.x));
 				// Spawn bullet at tower position facing enemy
-				Bullet* b = new Bullet(( AStarGame*)GetGame());
-				b->SetPosition(GetPosition());
-				b->SetRotation(GetRotation());
+				//Bullet* b = new Bullet(( AStarGame*)GetGame());
+				//b->SetPosition(GetPosition());
+				//b->SetRotation(GetRotation());
 			}
 		}
 		mNextAttack += AttackTime;

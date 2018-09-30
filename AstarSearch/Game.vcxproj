@@ -13,9 +13,9 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AIComponent.cpp" />
-    <ClCompile Include="AIState.cpp" />
     <ClCompile Include="AnimSpriteComponent.cpp" />
     <ClCompile Include="AStarGame.cpp" />
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -33,6 +33,8 @@
     <ClCompile Include="MyMultiActor.cpp" />
     <ClCompile Include="NavComponent.cpp" />
     <ClCompile Include="PhysicalMovementComponent.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="PlaneStates.cpp" />
     <ClCompile Include="Project1Game.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
@@ -47,6 +49,7 @@
     <ClInclude Include="AIState.h" />
     <ClInclude Include="AnimSpriteComponent.h" />
     <ClInclude Include="AStarGame.h" />
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CircleComponent.h" />
     <ClInclude Include="Component.h" />
@@ -64,6 +67,8 @@
     <ClInclude Include="MyMultiActor.h" />
     <ClInclude Include="NavComponent.h" />
     <ClInclude Include="PhysicalMovementComponent.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="PlaneStates.h" />
     <ClInclude Include="Project1Game.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="SpriteComponent.h" />

@@ -49,9 +49,6 @@
     <ClCompile Include="AIComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AIState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AnimSpriteComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -92,6 +89,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Missile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaneStates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -181,6 +187,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Missile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneStates.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

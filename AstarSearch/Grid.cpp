@@ -281,7 +281,7 @@ Tile* Grid::GetEndTile()
 void Grid::UpdateActor(float deltaTime)
 {
 	Actor::UpdateActor(deltaTime);
-	
+	/*
 	// Is it time to spawn a new enemy?
 	mNextEnemy -= deltaTime;
 	if (mNextEnemy <= 0.0f)
@@ -289,4 +289,5 @@ void Grid::UpdateActor(float deltaTime)
 		new Enemy(GetGame());
 		mNextEnemy += EnemyTime;
 	}
+	*/
 }

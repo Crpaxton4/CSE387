@@ -1,28 +1,75 @@
 #include "Project1Game.h"
 #include "Walker.h"
+#include "Enemy.h"
+#include "Plane.h"
+#include "Background.h"
 
 
 Project1Game::Project1Game() :Game()
 {
 }
 
+void Project1Game::ProcessInput() {
+	SDL_Event event;
+	while (SDL_PollEvent(&event)) {
+		switch (event.type) {
+		case SDL_QUIT:
+			mIsRunning = false;
+			break;
+		}
+	}
+
+	const Uint8* keyState = SDL_GetKeyboardState(NULL);
+	if (keyState[SDL_SCANCODE_ESCAPE]) {
+		mIsRunning = false;
+	}
+
+	mUpdatingActors = true;
+	for (auto actor : mActors) {
+		actor->ProcessInput(keyState);
+	}
+	mUpdatingActors = false;
+
+}
+
 void Project1Game::LoadData() {
 	// Create new Walker on the bottom left corner of the screen
 	Walker* walker = new Walker(this);
-	walker->SetPosition(vec2(500.0f, 500.0f));
+	walker->SetPosition(vec2(100.0f, 100.0f));
 	walker->SetScale(0.75f);
+
+	SetWalker(walker);
 	//Create Barriers in the middle of the area. Not sure of layout currently
 
 	//Create enemy Base in the top right corner (no need to add enemies because base handles that)
-
+	Plane* p = new Plane(this);
+	p->SetPosition(vec2(500, 500));
+	addEnemy(p);
 	//possibly create background, but may just use solid colors
+	Background* bg = new Background(this);
 }
 
-void Project1Game::UnloadData() {
+Actor* Project1Game::GetNearestEnemy(const vec2& pos) {
+	Enemy* closest = nullptr;
+	for (Enemy* e : enemies) {
+		if (closest == nullptr) {
+			closest = e;
+		}
+		else if (glm::length(closest->GetPosition() - pos) > glm::length(e->GetPosition() - pos)) {
+			closest = e;
+		}
+	}
 
+	return closest;
 }
 
-
-Project1Game::~Project1Game()
-{
+void Project1Game::RemoveEnemy(Enemy* e) {
+	auto iter = std::find(enemies.begin(), enemies.end(), e);
+	if (iter != enemies.end())
+	{
+		// Swap to end of vector and pop off (avoid erase copies)
+		std::iter_swap(iter, enemies.end() - 1);
+		enemies.pop_back();
+	}
 }
+

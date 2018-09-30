@@ -22,9 +22,9 @@ GuardActor::GuardActor( Game* game )
 
 	AIComponent * aic = new GuardAIComponent( this );
 	// Register states with AIComponent
-	aic->RegisterState( new AIPatrol( aic ) );
-	aic->RegisterState( new AIDeath( aic ) );
-	aic->RegisterState( new AIAttack( aic ) );
+	//aic->RegisterState( new AIPatrol( aic ) );
+	//aic->RegisterState( new AIDeath( aic ) );
+	//aic->RegisterState( new AIAttack( aic ) );
 	// Start in patrol state
 	aic->ChangeState( "Patrol" );
 
