@@ -160,58 +160,6 @@ void Game::GenerateOutput()
 	mRenderer->Draw();
 }
 
-//bool Game::LoadShaders()
-//{
-//	mSpriteShader = new Shader();
-//	if (!mSpriteShader->Load("Shaders/Sprite.vert", "Shaders/Sprite.frag"))
-//	{
-//		return false;
-//	}
-//
-//	// Set the active shader
-//	mSpriteShader->SetActive();
-//
-//	//  Create the projection matrix
-//	//mat4 projectionMat = glm::ortho( -mWindowWidth / 2.0f, mWindowWidth / 2.0f, -mWindowHeight / 2.0f, mWindowHeight / 2.0f, -1.0f , 2.0f);
-//
-//
-//	mat4 projectionMat = glm::perspective( glm::radians( 45.0f ), (float)mWindowWidth / mWindowHeight, 1.0f, 100.0f );
-//
-//	// Set the view-projection matrix
-//	mSpriteShader->SetMatrixUniform( "uViewProj", projectionMat );
-//	return true;
-//}
-
-//void Game::CreateSpriteVerts()
-//{
-//	// Array containing positions and vertices
-//	float vertices[] = {
-//		 0.5f,  -0.5f, 0.5f, 1.0f, 0.0f, // v0
-//		 -0.5f,  -0.5f, 0.5f, 0.0f, 0.0f, // v1
-//		 -0.5f,  0.5f, 0.5f, 0.0f, 1.0f, // v2
-//		  0.5f,  0.5f, 0.5f, 1.0f, 1.0f, // v3
-//
-//		  0.5f,  -0.5f, -0.5f, 0.0f, 0.0f, // v4
-//		  0.5f,  0.5f, -0.5f, 1.0f, 0.0f, // v5
-//		 -0.5f,  0.5f, -0.5f, 1.0f, 1.0f, // v6
-//		 -0.5f,  0.5f, -0.5f, 0.0f, 1.0f, // v7
-//
-//	};
-//
-//	//float vertices[] = {
-//	//-0.5f,  0.5f, 0.0f, 0.0f, 0.0f, // top left
-//	// 0.5f,  0.5f, 0.0f, 1.f, 0.0f, // top right
-//	// 0.5f, -0.5f, 0.0f, 1.f, 1.0f, // bottom right
-//	//-0.5f, -0.5f, 0.0f, 0.0f, 1.0f  // bottom left
-//	//};
-//
-//	unsigned int indices[] = {
-//		0, 1, 3,
-//		3, 1, 2
-//	};
-//
-//	mSpriteVerts = new VertexArray(vertices, 4, indices, 6);
-//}
 
 void Game::UnloadData()
 {
@@ -226,48 +174,14 @@ void Game::UnloadData()
 	{
 		mRenderer->UnloadData();
 	}
-
-	//// Destroy textures
-	//for (auto i : mTextures)
-	//{
-	//	i.second->Unload();
-	//	delete i.second;
-	//}
-	//mTextures.clear();
+	
 }
 
-//Texture* Game::GetTexture(const std::string& fileName)
-//{
-//	Texture* tex = nullptr;
-//	auto iter = mTextures.find(fileName);
-//	if (iter != mTextures.end())
-//	{
-//		tex = iter->second;
-//	}
-//	else
-//	{
-//		tex = new Texture();
-//		if (tex->Load(fileName))
-//		{
-//			mTextures.emplace(fileName, tex);
-//		}
-//		else
-//		{
-//			delete tex;
-//			tex = nullptr;
-//		}
-//	}
-//	return tex;
-//}
+
 
 void Game::Shutdown()
 {
 	UnloadData();
-	//delete mSpriteVerts;
-	//mSpriteShader->Unload();
-	//delete mSpriteShader;
-	//SDL_GL_DeleteContext(mContext);
-	//SDL_DestroyWindow(mWindow);
 
 	if (mRenderer)
 	{
