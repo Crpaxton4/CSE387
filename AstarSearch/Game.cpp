@@ -11,47 +11,45 @@
 #include <algorithm>
 #include "Actor.h"
 #include "SpriteComponent.h"
-#include "Grid.h"
 #include "Enemy.h"
 #include "AIComponent.h"
 #include "AIState.h"
 #include "AnimSpriteComponent.h"
 #include "MultiAnimSpriteComponent.h"
-#include "MyMultiActor.h"
 #include "SpriteSheetAnimCompnent.h"
 #include <iostream>
 
 Game::Game()
-:mWindow(nullptr)
-,mRenderer(nullptr)
-,mIsRunning(true)
-,mUpdatingActors(false)
+	:mWindow(nullptr)
+	, mRenderer(nullptr)
+	, mIsRunning(true)
+	, mUpdatingActors(false)
 {
-	
+
 }
 
 bool Game::Initialize()
 {
-	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
 	{
 		SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
 		return false;
 	}
-	
+
 	mWindow = SDL_CreateWindow("CSE 387 Artificial Intelligence", 100, 100, windowWidth, windowHeight, 0);
 	if (!mWindow)
 	{
 		SDL_Log("Failed to create window: %s", SDL_GetError());
 		return false;
 	}
-	
+
 	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (!mRenderer)
 	{
 		SDL_Log("Failed to create renderer: %s", SDL_GetError());
 		return false;
 	}
-	
+
 	if (IMG_Init(IMG_INIT_PNG) == 0)
 	{
 		SDL_Log("Unable to initialize SDL_image: %s", SDL_GetError());
@@ -61,7 +59,7 @@ bool Game::Initialize()
 	LoadData();
 
 	mTicksCount = SDL_GetTicks();
-	
+
 	return true;
 }
 
@@ -82,30 +80,17 @@ void Game::ProcessInput()
 	{
 		switch (event.type)
 		{
-			case SDL_QUIT:
-				mIsRunning = false;
-				break;
+		case SDL_QUIT:
+			mIsRunning = false;
+			break;
 		}
 	}
-	
+
 	const Uint8* keyState = SDL_GetKeyboardState(NULL);
 	if (keyState[SDL_SCANCODE_ESCAPE])
 	{
 		mIsRunning = false;
 	}
-	
-	//if (keyState[SDL_SCANCODE_B])
-	//{
-	//	mGrid->BuildTower();
-	//}
-	
-	//// Process mouse
-	//int x, y;
-	//Uint32 buttons = SDL_GetMouseState(&x, &y);
-	//if (SDL_BUTTON(buttons) & SDL_BUTTON_LEFT)
-	//{
-	//	mGrid->ProcessClick(x, y);
-	//}
 
 	mUpdatingActors = true;
 	for (auto actor : mActors)
@@ -165,7 +150,7 @@ void Game::GenerateOutput()
 {
 	SDL_SetRenderDrawColor(mRenderer, 34, 139, 34, 255);
 	SDL_RenderClear(mRenderer);
-	
+
 	// Draw all sprite components
 	for (auto sprite : mSprites)
 	{
@@ -177,34 +162,6 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
-	//mGrid = new Grid(this);
-
-
-
-
-
-
-	//Actor * spriteActor = new Actor( this );
-	//spriteActor->SetPosition( vec2( 1024.0f/2, 768.0f/2 ) );
-	//spriteActor->SetScale( 5.0f );
-
-	//SpriteSheetAnimCompnent * sheet = new SpriteSheetAnimCompnent( spriteActor );
-
-	//SpriteSheetAnimation ad;
-
-	//ad.startingFrame = vec2( 0, 0 );
-	//ad.endingFrame = vec2( 9, 12 );
-	//ad.frameSize = vec2( 0, 0 );
-	//ad.rowColumns = vec2( 20, 13 );
-	//ad.textureName = "Assets/RaceHorseSprteSheet.png";
-	//ad.framePerSec = 64;
-	//ad.loopTimes = -1;
-
-	//sheet->AddAnimation( "run", ad );
-	//sheet->PlayAnimation( "run" );
-	//sheet->SetFlip( SDL_FLIP_NONE );
-
-
 
 }
 
@@ -307,7 +264,7 @@ void Game::AddSprite(SpriteComponent* sprite)
 	// (The first element with a higher draw order than me)
 	int myDrawOrder = sprite->GetDrawOrder();
 	auto iter = mSprites.begin();
-	for ( ;
+	for (;
 		iter != mSprites.end();
 		++iter)
 	{

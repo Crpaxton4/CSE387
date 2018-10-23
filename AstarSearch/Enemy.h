@@ -8,14 +8,18 @@
 
 #pragma once
 #include "Actor.h"
+#include "CircleComponent.h"
 
 class Enemy : public Actor
 {
 public:
-	Enemy(class Game* game);
+	Enemy(class Project1Game* game);
 	~Enemy();
-	void UpdateActor(float deltaTime) override;
-	class CircleComponent* GetCircle() { return mCircle; }
-private:
-	class CircleComponent* mCircle;
+	virtual void UpdateActor(float deltaTime) override;
+	class CircleComponent* GetCircle() { return Cc; }
+	virtual void Damage(bool missile = false);
+	
+protected:
+	CircleComponent* Cc;
+	int totalHealth;
 };

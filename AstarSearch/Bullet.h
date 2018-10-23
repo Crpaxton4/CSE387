@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------
+// From Game Programming in C++ by Sanjay Madhav
 // From Game Programming in C++ by Sanjay Madhav
 // Copyright (C) 2017 Sanjay Madhav. All rights reserved.
 // 
@@ -8,13 +8,15 @@
 
 #pragma once
 #include "Actor.h"
-
+#include "CircleComponent.h"
 class Bullet : public Actor
 {
 public:
-	Bullet(class AStarGame* game);
+	Bullet(class Project1Game* game, bool friendly = true);
+	~Bullet();
 	void UpdateActor(float deltaTime) override;
 private:
-	class CircleComponent* mCircle;
+	CircleComponent* Cc;
 	float mLiveTime;
+	const bool FRIENDLY;
 };

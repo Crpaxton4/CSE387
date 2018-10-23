@@ -4,8 +4,9 @@
 
 #include <iostream>
 
-SpriteSheetAnimCompnent::SpriteSheetAnimCompnent( class Actor* owner, int drawOrder )
-	:SpriteComponent( owner, drawOrder )
+SpriteSheetAnimCompnent::SpriteSheetAnimCompnent( class Actor* owner, bool useRotation, int drawOrder )
+	:SpriteComponent( owner, drawOrder ),
+	rotation(useRotation)
 {
 
 }
@@ -41,12 +42,16 @@ void SpriteSheetAnimCompnent::Draw( SDL_Renderer* renderer )
 		r.x = static_cast<int>( mOwner->GetPosition( ).x - r.w / 2 );
 		r.y = static_cast<int>( mOwner->GetPosition( ).y - r.h / 2 );
 
+		float rot = 0;
+		if (rotation) {
+			rot = -glm::degrees(mOwner->GetRotation());
+		}
 		// Draw (have to convert angle from radians to degrees, and clockwise to counter)
 		SDL_RenderCopyEx( renderer,
 			mTexture,
 			&sourceRectangle,
 			&r,
-			-glm::degrees( mOwner->GetRotation( ) ),
+			rot,
 			nullptr,
 			mFlip
 		);

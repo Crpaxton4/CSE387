@@ -28,6 +28,7 @@ float CircleComponent::GetRadius() const
 
 bool Intersect(const CircleComponent& a, const CircleComponent& b)
 {
+	if (&a == nullptr || &b == nullptr) return false;
 	// Calculate distance squared
 	vec2 diff = a.GetCenter() - b.GetCenter();
 	float distSq = glm::dot(diff, diff);//diff.LengthSq( );

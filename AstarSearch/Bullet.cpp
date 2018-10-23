@@ -10,44 +10,61 @@
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
 #include "CircleComponent.h"
-#include "AStarGame.h"
+#include "Project1Game.h"
 #include "Enemy.h"
 
-Bullet::Bullet(class AStarGame* game)
-:Actor(game)
+Bullet::Bullet(class Project1Game* game, bool friendly)
+	:Actor(game),
+	FRIENDLY(friendly)
 {
 	SpriteComponent* sc = new SpriteComponent(this);
 	sc->SetTexture(game->GetTexture("Assets/Projectile.png"));
-	
+
 	MoveComponent* mc = new MoveComponent(this);
 	mc->SetForwardSpeed(400.0f);
-	
-	mCircle = new CircleComponent(this);
-	mCircle->SetRadius(5.0f);
-	
+
+	Cc = new CircleComponent(this);
+	Cc->SetRadius(5.0f);
+
 	mLiveTime = 1.0f;
 }
 
 void Bullet::UpdateActor(float deltaTime)
 {
 	Actor::UpdateActor(deltaTime);
-	
-	// Check for collision vs enemies
-	for (Enemy* e : (( AStarGame*)GetGame())->GetEnemies())
-	{
-		if (Intersect(*mCircle, *(e->GetCircle())))
+
+	if (FRIENDLY) {
+		// Check for collision vs enemies
+		std::vector<Enemy*> enemies = ((Project1Game*)GetGame())->GetEnemies();
+		if (enemies.size() <= 0) return;
+		for (Enemy* e : enemies)
 		{
-			// We both die on collision
-			e->SetState(EDead);
-			SetState(EDead);
-			break;
+			if (Intersect(*Cc, *(e->GetCircle())))
+			{
+				// We both die on collision
+				// TODO: Just damage enemy on hit and enemy will destroy itsef
+				e->Damage();
+				SetState(EDead);
+				break;
+			}
 		}
 	}
-	
+	else {
+		Walker* w = ((Project1Game*)GetGame())->getWalker();
+		if (Intersect(*Cc, *(w->GetCircle()))) {
+			w->Damage(GetPosition());
+			SetState(EDead);
+		}
+	}
+
 	mLiveTime -= deltaTime;
 	if (mLiveTime <= 0.0f)
 	{
 		// Time limit hit, die
 		SetState(EDead);
 	}
+}
+
+Bullet::~Bullet() {
+	delete Cc;
 }

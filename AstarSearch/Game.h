@@ -20,15 +20,16 @@ public:
 	bool Initialize();
 	void RunLoop();
 	void Shutdown();
+	void End() { mIsRunning = false; }
 
 	void AddActor(class Actor* actor);
 	void RemoveActor(class Actor* actor);
 
 	void AddSprite(class SpriteComponent* sprite);
 	void RemoveSprite(class SpriteComponent* sprite);
-	
+
 	SDL_Texture* GetTexture(const std::string& fileName);
-	
+
 
 protected:
 	virtual void ProcessInput();
@@ -36,7 +37,7 @@ protected:
 	void GenerateOutput();
 	virtual void LoadData();
 	virtual void UnloadData();
-	
+
 	// Map of textures loaded
 	std::unordered_map<std::string, SDL_Texture*> mTextures;
 
