@@ -136,8 +136,12 @@ void Renderer::Draw()
 	// Set the mesh shader active
 	mMeshShader->SetActive();
 
+	
+	//mMeshShader->SetMatrixUniform("uViewProj", mProjectionMat * mViewMat);
+	
 	// Update view-projection matrix
-	mMeshShader->SetMatrixUniform("uViewProj", mProjectionMat * mViewMat);
+	mMeshShader->SetMatrixUniform("uViewTransformation", mViewMat);
+	mMeshShader->SetMatrixUniform("uProjTransformation", mProjectionMat);
 
 	for (auto mc : mMeshComps)
 	{
