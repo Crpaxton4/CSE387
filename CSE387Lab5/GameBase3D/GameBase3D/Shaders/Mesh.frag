@@ -16,7 +16,7 @@ in vec2 fragTexCoord;
 in vec3 fragNormal;
 
 // world coordinates from vertex shader
-in vec3 worldCoord
+in vec3 worldCoord;
 
 // This corresponds to the output color to the color buffer
 out vec4 outColor;
