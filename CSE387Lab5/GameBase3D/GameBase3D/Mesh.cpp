@@ -96,18 +96,25 @@ bool Mesh::Load(class Renderer* renderer, const std::string & fileName )
 		pntVertexData face6p3 = pntVertexData(pos6, norm6, tex3); vData.push_back(face6p3); //22
 		pntVertexData face6p4 = pntVertexData(pos8, norm6, tex4); vData.push_back(face6p4); //23
 
+
 		indices = {
-			// positive x
+			0, 2, 3,
+			1, 3, 2,
 
-			//negative x
+			4, 5, 6,
+			6, 7, 4,
 
-			//positive y
+			8, 9, 11,
+			10, 11, 8,
 
-			//negative y
+			12, 14, 13, 
+			12, 15, 13,
 
-			//positive z
+			16, 17, 18, 
+			18, 19, 16, 
 
-			//negative z
+			20, 22, 23, 
+			22, 23, 21
 		};
 
 
@@ -120,10 +127,8 @@ bool Mesh::Load(class Renderer* renderer, const std::string & fileName )
 	}
 
 	mVertexArray = new VertexArray( vData, indices );
-
 	vData.clear( );
 	indices.clear( );
-
 	return true;
 }
 
