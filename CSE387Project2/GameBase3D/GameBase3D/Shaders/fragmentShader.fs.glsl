@@ -98,7 +98,8 @@ void main()
 		fragmentColor = material.emmissiveMat;
 
 		for (int i = 0; i < MaxLights; i++)  {
-
+			
+			// TODO uncomment this when done with 
 			fragmentColor = material.diffuseMat; //+= vec4( shadingCaculation( lights[i], material ), 1.0);
 		}	
 

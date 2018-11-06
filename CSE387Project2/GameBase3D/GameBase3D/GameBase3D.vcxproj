@@ -171,6 +171,7 @@ xcopy "$(ProjectDir)\..\..\external\FreeImage\lib\*.dll" "$(OutDir)" /i /s /y</C
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="ModelMesh.h" />
     <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="PlaneMesh.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
@@ -200,6 +201,7 @@ xcopy "$(ProjectDir)\..\..\external\FreeImage\lib\*.dll" "$(OutDir)" /i /s /y</C
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="ModelMesh.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="PlaneMesh.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />

@@ -119,6 +119,9 @@
     <ClInclude Include="GameBoardMesh.h">
       <Filter>Source and Header Files\Meshes</Filter>
     </ClInclude>
+    <ClInclude Include="PlaneMesh.h">
+      <Filter>Source and Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp">
@@ -202,6 +205,7 @@
     <ClCompile Include="GameBoardMesh.cpp">
       <Filter>Source and Header Files\Meshes</Filter>
     </ClCompile>
+    <ClCompile Include="PlaneMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Sprite.frag">
