@@ -19,9 +19,10 @@ layout(location = 0) in vec3 inPosition;
 layout(location = 1) in vec3 inNormal;
 layout(location = 2) in vec2 inTexCoord;
 
-out vec3 worldCoord;
-out vec3 fragNormal;
-out vec2 fragtexCoord;
+// values for fragment shader
+out vec3 outWorldCoord;
+out vec3 outFragNormal;
+out vec2 outFragTexCoord;
 
 void main()
 {
@@ -30,13 +31,14 @@ void main()
 	vec4 norm = vec4(inNormal, 1.0);
 
 	// transform position wo world coordinates
-	vec4 worldCoordv4 = uWorldTransformation * pos;
+	vec4 worldCoordv4 = uWorldTransform * pos;
 
 	// Transform position to clip space
 	gl_Position = uProjTransform * uViewTransform * worldCoordv4;
 
-	worldCoord = vec3(worldCoordv4);
-	fragNormal = vec3(uWorldTransform * norm);
-	fragTextCoord = inTexCoord;
+	outWorldCoord = worldCoordv4.xyz;
+	vec4 fragNormalv4 = uWorldTransform * norm;
+	outFragNormal = fragNormalv4.xyz;
+	outFragTexCoord = inTexCoord;
 
 }
