@@ -100,7 +100,7 @@ void main()
 		for (int i = 0; i < MaxLights; i++)  {
 			
 			// TODO uncomment this when done with 
-			fragmentColor = material.diffuseMat; //+= vec4( shadingCaculation( lights[i], material ), 1.0);
+			fragmentColor += vec4( shadingCaculation( lights[i], material ), 1.0);
 		}	
 
 	} else if(material.textureMode == 1){ // No shading calculations
@@ -113,11 +113,50 @@ void main()
 vec3 shadingCaculation(GeneralLight light, Material object )
 {
 	vec3 totalFromThisLight = vec3(0.0, 0.0, 0.0);
-
 	if (light.enabled == true) {
+		if(light.positionOrDirection.w == 1){
+			// Positional Light Calculations
+			vec3 lightVec = vec3(light.positionOrDirection) - vertexWorldPosition;
+			float dist = length(lightVec);
+			float attenuation = (light.constant + light.linear * dist + light.quadratic * dist * dist);
 
-		// TODO
-		// Implement shading calculations  
+			vec3 v = normalize(worldEyePosition - vertexWorldPosition);
+			vec3 l = normalize(lightVec);
+			vec3 h = normalize(v+l);
+			vec3 n = normalize(vertexWorldNormal);
+			
+			float falloffFactor = 1.0f; // does nothing is not recalculated
+
+			if(light.isSpot){
+				float spotCosine = dot(-l, light.spotDirection);
+				falloffFactor = pow(spotCosine, light.spotExponent);
+			}
+			
+			vec4 ambient = light.ambientColor * object.ambientMat;
+			vec4 diffuse = max(0, dot(n, l)) * light.diffuseColor  *object.diffuseMat;
+			vec4 specular = pow(max(0, dot(n, h)), object.specularExp) * light.specularColor*object.specularMat;
+			
+			return vec3(ambient + (falloffFactor / attenuation) * (diffuse + specular));
+			
+			
+			
+		}else if(light.positionOrDirection.w == 0){
+			// Directional Light Calculations
+			// Reading led to the conclusion that 
+			// directional lights do not use attenuation
+			
+			vec3 v = normalize(worldEyePosition - vertexWorldPosition);
+			vec3 l = normalize(vec3(light.positionOrDirection)); // -direction of the light
+			vec3 h = normalize(v+l);
+			vec3 n = normalize(vertexWorldNormal);
+			
+			vec4 ambient = light.ambientColor * object.ambientMat;
+			vec4 diffuse = max(0, dot(n, l))*light.diffuseColor *object.diffuseMat;
+			vec4 specular = pow(max(0, dot(n, h)), object.specularExp) * light.specularColor*object.specularMat;
+			
+			return vec3(ambient + diffuse + specular);
+			
+		}
 
 	}
 

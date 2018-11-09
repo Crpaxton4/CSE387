@@ -166,6 +166,7 @@ xcopy "$(ProjectDir)\..\..\external\FreeImage\lib\*.dll" "$(OutDir)" /i /s /y</C
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameBoardMesh.h" />
     <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="LightComponent.h" />
     <ClInclude Include="MathLibsConstsFuncs.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshComponent.h" />
@@ -196,6 +197,7 @@ xcopy "$(ProjectDir)\..\..\external\FreeImage\lib\*.dll" "$(OutDir)" /i /s /y</C
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameBoardMesh.cpp" />
     <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="LightComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshComponent.cpp" />
