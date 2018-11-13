@@ -2,14 +2,19 @@
 #include "SharedGeneralLighting.h"
 #include "Actor.h"
 
-LightComponent::LightComponent(class Actor* owner, int updateOrder = 100)
+LightComponent::LightComponent(class Actor* owner, int lightNum, int updateOrder)
 :Component(owner, updateOrder) {
-	lightNum = lightCount;
-	lightCount++;
+	this->lightNum = lightNum;
 }
 
 void LightComponent::setEnabled(bool enabled) {
+	isEnabled = enabled;
 	SharedGeneralLighting::setEnabled((lightSource)lightNum, enabled);
+}
+
+void LightComponent::toggle() {
+	isEnabled = !isEnabled;
+	SharedGeneralLighting::setEnabled((lightSource)lightNum, isEnabled);
 }
 
 void LightComponent::setAmbient(vec4 ambient) {
@@ -27,6 +32,11 @@ void LightComponent::setSpecular(vec4 specular) {
 void LightComponent::setDirectional(vec3 direction) {
 	isDirectional = true;
 	SharedGeneralLighting::setPositionOrDirection((lightSource)lightNum, vec4(direction, 0.0f));
+}
+
+void LightComponent::setPositional(vec3 position) {
+	isDirectional = false;
+	SharedGeneralLighting::setPositionOrDirection((lightSource)lightNum, vec4(position, 1.0f));
 }
 
 void LightComponent::makeSpotlight(vec3 direction, vec3 position, float cutOffCos, float falloff) {

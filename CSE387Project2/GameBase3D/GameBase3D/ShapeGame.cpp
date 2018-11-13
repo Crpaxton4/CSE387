@@ -145,30 +145,108 @@ void ShapeGame::LoadData( )
 
 }
 
+void ShapeGame::ProcessInput() {
+	SDL_Event event;
+
+	const Uint8* keyState = SDL_GetKeyboardState(NULL);
+
+	while (SDL_PollEvent(&event))
+	{
+		if (event.type == SDL_WINDOWEVENT) { // Windows event?
+
+			switch (event.window.event) {
+
+			case SDL_WINDOWEVENT_SIZE_CHANGED:
+
+				mRenderer->Resize();
+
+				break;
+			}
+		}
+		else {
+
+			switch (event.type) {
+
+				// If we get an SDL_QUIT event, end loop
+			case SDL_QUIT:
+				std::cout << "Window closed. Quitting." << std::endl;
+				mIsRunning = false;
+				break;
+
+			case SDL_KEYDOWN:
+				
+				if (keyState[SDL_SCANCODE_ESCAPE])
+				{
+					mIsRunning = false;
+				}
+
+				if (keyState[SDL_SCANCODE_A])
+				{
+					ambL->toggle();
+				}
+
+				if (keyState[SDL_SCANCODE_P])
+				{
+					posL->toggle();
+				}
+
+				if (keyState[SDL_SCANCODE_D])
+				{
+					dirL->toggle();
+				}
+
+				if (keyState[SDL_SCANCODE_S])
+				{
+					spotL->toggle();
+				}
+			}
+		}
+	}
+
+	
+	mUpdatingActors = true;
+	for (auto actor : mActors)
+	{
+		actor->ProcessInput(keyState);
+	}
+	mUpdatingActors = false;
+}
+
 void ShapeGame::SetupLighting()
 {
 
 	// Create ambient light actor
 	Actor* ambientLight = new Actor(this);
-	LightComponent* amb = new LightComponent(ambientLight);
-	amb->setAmbient(vec4(0.15f, 0.15f, 0.15f, 1.0f));
+	ambL = new LightComponent(ambientLight, 0);
+	ambL->setEnabled(true);
+	ambL->setAmbient(vec4(0.15f, 0.15f, 0.15f, 1.0f));
+	
+	Actor* positionalLight = new Actor(this);
+	posL = new LightComponent(positionalLight, 1);
+	posL->setEnabled(true);
+	posL->setDiffuse(vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	posL->setSpecular(vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	posL->setPositional(vec3(5.0f, 10.0f, -10.0f));
+
+	Actor* directionalLight = newActor(this);
+	//TODO
 
 
-	// ***** Ambient Light **************
-	SharedGeneralLighting::setEnabled(GL_LIGHT_ZERO, ambientOn);
-	SharedGeneralLighting::setAmbientColor( GL_LIGHT_ZERO, vec4(0.15f, 0.15f, 0.15f, 1.0f));
+	//// ***** Ambient Light **************
+	//SharedGeneralLighting::setEnabled(GL_LIGHT_ZERO, ambientOn);
+	//SharedGeneralLighting::setAmbientColor( GL_LIGHT_ZERO, vec4(0.15f, 0.15f, 0.15f, 1.0f));
 
-	// ***** Positional Light ***************
-	SharedGeneralLighting::setEnabled(GL_LIGHT_ONE, positionalOn);
-	SharedGeneralLighting::setDiffuseColor(GL_LIGHT_ONE, vec4(1.0f, 1.0f, 1.0f, 1.0f));
-	SharedGeneralLighting::setSpecularColor(GL_LIGHT_ONE, vec4(1.0f, 1.0f, 1.0f, 1.0f));
-	SharedGeneralLighting::setPositionOrDirection(GL_LIGHT_ONE, vec4(5.0f, 10.0f, -10.0f, 1.0f));
+	//// ***** Positional Light ***************
+	//SharedGeneralLighting::setEnabled(GL_LIGHT_ONE, positionalOn);
+	//SharedGeneralLighting::setDiffuseColor(GL_LIGHT_ONE, vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	//SharedGeneralLighting::setSpecularColor(GL_LIGHT_ONE, vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	//SharedGeneralLighting::setPositionOrDirection(GL_LIGHT_ONE, vec4(5.0f, 10.0f, -10.0f, 1.0f));
 
-	// ***** Directional Light ***************
-	SharedGeneralLighting::setEnabled(GL_LIGHT_TWO, directionalOn);
-	SharedGeneralLighting::setDiffuseColor(GL_LIGHT_TWO, vec4(0.75f, 0.75f, 0.75f, 1.0f));
-	SharedGeneralLighting::setSpecularColor(GL_LIGHT_TWO, vec4(1.0f, 1.0f, 1.0f, 1.0f));
-	SharedGeneralLighting::setPositionOrDirection(GL_LIGHT_TWO, vec4(1.0f, 1.0f, 1.0f, 0.0f));
+	//// ***** Directional Light ***************
+	//SharedGeneralLighting::setEnabled(GL_LIGHT_TWO, directionalOn);
+	//SharedGeneralLighting::setDiffuseColor(GL_LIGHT_TWO, vec4(0.75f, 0.75f, 0.75f, 1.0f));
+	//SharedGeneralLighting::setSpecularColor(GL_LIGHT_TWO, vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	//SharedGeneralLighting::setPositionOrDirection(GL_LIGHT_TWO, vec4(1.0f, 1.0f, 1.0f, 0.0f));
 
 	
 

@@ -6,9 +6,11 @@ class LightComponent :
 	public Component
 {
 public:
-	LightComponent(class Actor* owner, int updateOrder = 100);
+	LightComponent(class Actor* owner, int lightNum, int updateOrder = 100);
 
 	void setEnabled(bool enabled);
+
+	void toggle();
 
 	void setAmbient(vec4 ambient);
 
@@ -17,6 +19,8 @@ public:
 	void setSpecular(vec4 specular);
 
 	void setDirectional(vec3 direction);
+
+	void setPositional(vec3 position);
 
 	void makeSpotlight(vec3 direction, vec3 position, float spread, float falloff);
 
@@ -28,10 +32,8 @@ public:
 	void OnUpdateWorldTransform() override;
 
 private:
-	static int lightCount;
 	int lightNum;
 	bool isSpot = false;
 	bool isDirectional = false;
+	bool isEnabled;
 };
-
-int LightComponent::lightCount = 0;
