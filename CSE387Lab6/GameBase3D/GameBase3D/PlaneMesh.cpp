@@ -1,7 +1,7 @@
 #include "PlaneMesh.h"
 
-PlaneMesh::PlaneMesh(float width, float height) 
-	: halfWidth(width / 2.0f),halfHeight(height / 2.0f) {
+PlaneMesh::PlaneMesh(float width, float height, float s, float t)
+	: halfWidth(width / 2.0f),halfHeight(height / 2.0f), texS(s), texT(t){
 
 }
 
@@ -16,9 +16,9 @@ bool PlaneMesh::Load(const std::string &fileName, Material material) {
 
 	vec3 n1(0, 0, 1); //face positive z direction
 
-	vec2 t1(0, 6);
-	vec2 t2(8, 6);
-	vec2 t3(8, 0);
+	vec2 t1(0, texT);
+	vec2 t2(texS, texT);
+	vec2 t3(texS, 0);
 	vec2 t4(0, 0);
 
 	// front face

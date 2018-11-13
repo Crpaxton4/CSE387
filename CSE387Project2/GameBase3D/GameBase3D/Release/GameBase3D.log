@@ -1,24 +1,6 @@
-﻿  ShapeGame.cpp
-  Generating code
-  1 of 2213 functions (<0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  GameBase3D.vcxproj -> C:\Users\paxtoncr\Source\Repos\CSE387\CSE387Project2\GameBase3D\Release\GameBase3D.exe
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libfreetype-6.dll
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libogg-0.dll
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libpng16-16.dll
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libvorbis-0.dll
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libvorbisfile-3.dll
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\SDL2.dll
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\SDL2_image.dll
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\SDL2_mixer.dll
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\SDL2_ttf.dll
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\zlib1.dll
-  10 File(s) copied
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\GLEW\lib\win\x86\glew32.dll
-  1 File(s) copied
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\assimp\lib\assimp-vc140-mt.dll
-  1 File(s) copied
-  C:\Users\paxtoncr\source\repos\CSE387\CSE387Project2\GameBase3D\GameBase3D\\..\..\external\FreeImage\lib\FreeImage.dll
-  1 File(s) copied
+﻿  Actor.cpp
+  LightComponent.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\lightcomponent.cpp(5): error C2572: 'LightComponent::LightComponent': redefinition of default argument: parameter 1
+  c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\lightcomponent.h(9): note: see declaration of 'LightComponent::LightComponent'
+  main.cpp
+  ShapeGame.cpp
