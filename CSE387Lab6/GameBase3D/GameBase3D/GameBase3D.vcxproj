@@ -158,6 +158,7 @@ xcopy "$(ProjectDir)\..\..\external\FreeImage\lib\*.dll" "$(OutDir)" /i /s /y</C
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="BoxMesh.h" />
     <ClInclude Include="CircleComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConeMesh.h" />
@@ -188,6 +189,7 @@ xcopy "$(ProjectDir)\..\..\external\FreeImage\lib\*.dll" "$(OutDir)" /i /s /y</C
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="BoxMesh.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConeMesh.cpp" />

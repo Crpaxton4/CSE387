@@ -16,6 +16,7 @@
 #include "ConeMesh.h"
 #include "GameBoardMesh.h"
 #include "PlaneMesh.h"
+#include "BoxMesh.h"
 
 ShapeGame::ShapeGame( )
 	:Game( "CSE387 - Project 2")
@@ -47,27 +48,34 @@ void ShapeGame::LoadData( )
 
 	//modelMeshComponent->SetMesh( modelMesh );
 
+	Material testMaterial;
+	testMaterial.setAmbientAndDiffuseMat(vec4(1.0f, 0.5f, 0.5f, 1.0f));
+	testMaterial.setDiffuseTexture(this->GetRenderer()->GetTexture("Assets/test.bmp")->GetTextureObject());
+
 	// Gameboard
-	ShapeGameActor * gbActor = new ShapeGameActor( this );
-	gbActor->SetPosition( vec3( 0, -3, 0 ) );
 
-	MeshComponent * gbComponent = new MeshComponent( gbActor );
+	ShapeGameActor* boardActor = new ShapeGameActor(this);
+	boardActor->SetPosition(vec3(0.0f, -3.0f, 0.0f));
+	boardActor->SetRotation(glm::rotate(glm::radians(-90.0f), vec3(1, 0, 0)));
 
-	Material dark;
-	dark.setAmbientAndDiffuseMat( vec4( 0.1f, 0.1f, 0.1f, 1.0f ) );
+	MeshComponent* boardCompoment = new MeshComponent(boardActor);
 
-	Material light;
-	light.setAmbientAndDiffuseMat( vec4( 0.9f, 0.9f, 0.9f, 1.0f ) );
+	PlaneMesh* boardMesh = new PlaneMesh(8.0f, 8.0f);
 
-	GameBoardMesh* boardMesh = new GameBoardMesh( );
-	boardMesh->Load( "board", dark, light );
+	Material boardMat;
+	boardMat.setAmbientAndDiffuseMat(vec4(1.0f, 0.5f, 0.5f, 1.0f));
 
-	gbComponent->SetMesh( boardMesh );
+	boardMat.setDiffuseTexture(this->GetRenderer()->GetTexture("Assets/chessboard.bmp")->GetTextureObject());
+
+
+	boardMesh->Load("plane", boardMat);
+
+	boardCompoment->SetMesh(boardMesh);
 
 	// Earth
 	ShapeGameActor * sphereActor = new ShapeGameActor( this );
 	sphereActor->SetPosition( vec3( 3, -1.5, 0 ) );
-	sphereActor->SetRotation( glm::rotate( glm::radians( -90.0f ), vec3( 0, 1, 0 ) ) );
+	sphereActor->SetRotation( glm::rotate( glm::radians( -90.0f ), vec3( 1, 1, 0 ) ) );
 
 	MeshComponent * sphereMeshComponent = new MeshComponent( sphereActor );
 
@@ -90,7 +98,7 @@ void ShapeGame::LoadData( )
 	coneMat.setAmbientAndDiffuseMat( vec4( 1, 1, 0, 1 ) );
 
 	ConeMesh * coneMesh = new ConeMesh(  );
-	coneMesh->Load( "cone", coneMat );
+	coneMesh->Load( "cone", testMaterial );
 
 	coneComponent->SetMesh( coneMesh );
 
@@ -105,7 +113,7 @@ void ShapeGame::LoadData( )
 	cylinderMat.setAmbientAndDiffuseMat( vec4( 1, 0, 0, 1 ) );
 
 	CylinderMesh * cylinderMesh = new CylinderMesh( );
-	cylinderMesh->Load( "cylinder", cylinderMat );
+	cylinderMesh->Load( "cylinder", testMaterial);
 
 	cylinderComponent->SetMesh( cylinderMesh );
 
@@ -118,8 +126,8 @@ void ShapeGame::LoadData( )
 	Material cubeMat;
 	cubeMat.setAmbientAndDiffuseMat( vec4( 0, 0, 1, 1 ) );
 
-	CubeMesh * cubeMesh = new CubeMesh( 1, 2, 3);
-	cubeMesh->Load( "cube", cubeMat );
+	BoxMesh * cubeMesh = new BoxMesh( 1, 2, 3);
+	cubeMesh->Load( "cube", testMaterial);
 
 	cubeComponent->SetMesh( cubeMesh );
 
@@ -130,12 +138,12 @@ void ShapeGame::LoadData( )
 
 	MeshComponent* wallCompoment = new MeshComponent(wallPlaneActor);
 
-	PlaneMesh* planeMesh = new PlaneMesh(8.0f, 6.0f);
+	PlaneMesh* planeMesh = new PlaneMesh(8.0f, 6.0f, 4.0f, 3.0f);
 
 	Material planeMat;
 	planeMat.setAmbientAndDiffuseMat(vec4(1.0f, 0.5f, 0.5f, 1.0f));
 
-	planeMat.setDiffuseTexture(this->GetRenderer()->GetTexture("Assets/brick.bmp")->GetTextureObject());
+	planeMat.setDiffuseTexture(this->GetRenderer()->GetTexture("Assets/stacked_slate.bmp")->GetTextureObject());
 
 	
 	planeMesh->Load("plane", planeMat);
