@@ -41,6 +41,7 @@ void LightComponent::setPositional(vec3 position) {
 
 void LightComponent::makeSpotlight(vec3 direction, vec3 position, float cutOffCos, float falloff) {
 	SharedGeneralLighting::setIsSpot((lightSource)lightNum, true);
+	SharedGeneralLighting::setPositionOrDirection((lightSource)lightNum, vec4(position, 1.0f));
 	SharedGeneralLighting::setSpotDirection((lightSource)lightNum, direction);
 	SharedGeneralLighting::setSpotCutoffCos((lightSource)lightNum, cutOffCos);
 	SharedGeneralLighting::setSpotExponent((lightSource)lightNum, falloff);

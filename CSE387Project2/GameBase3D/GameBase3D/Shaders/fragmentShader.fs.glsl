@@ -125,11 +125,18 @@ vec3 shadingCaculation(GeneralLight light, Material object )
 			vec3 h = normalize(v+l);
 			vec3 n = normalize(vertexWorldNormal);
 			
-			float falloffFactor = 1.0f; // does nothing is not recalculated
+			float falloffFactor = 1.0f; // does nothing if not recalculated
 
 			if(light.isSpot){
 				float spotCosine = dot(-l, light.spotDirection);
-				falloffFactor = pow(spotCosine, light.spotExponent);
+
+				if(light.spotCutoffCos > spotCosine){
+					return vec3(1.0f, 0.0f, 0.0f);
+				}
+
+				//falloffFactor = pow(spotCosine, light.spotExponent);
+
+				
 			}
 			
 			vec4 ambient = light.ambientColor * object.ambientMat;

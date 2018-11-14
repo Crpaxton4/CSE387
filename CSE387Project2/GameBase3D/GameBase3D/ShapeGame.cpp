@@ -199,6 +199,9 @@ void ShapeGame::ProcessInput() {
 				{
 					spotL->toggle();
 				}
+
+				
+
 			}
 		}
 	}
@@ -215,7 +218,7 @@ void ShapeGame::ProcessInput() {
 void ShapeGame::SetupLighting()
 {
 
-	// Create ambient light actor
+	//// Create ambient light actor
 	Actor* ambientLight = new Actor(this);
 	ambL = new LightComponent(ambientLight, 0);
 	ambL->setEnabled(true);
@@ -228,27 +231,45 @@ void ShapeGame::SetupLighting()
 	posL->setSpecular(vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	posL->setPositional(vec3(5.0f, 10.0f, -10.0f));
 
-	Actor* directionalLight = newActor(this);
-	//TODO
+	Actor* directionalLight = new Actor(this);
+	dirL = new LightComponent(directionalLight, 2);
+	dirL->setEnabled(true);
+	dirL->setDiffuse(vec4(0.75f, 0.75f, 0.75f, 1.0f));
+	dirL->setSpecular(vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	dirL->setDirectional(vec3(1.0f, 1.0f, 1.0f));
 
+	Actor* spotLight = new Actor(this);
+	spotL = new LightComponent(spotLight, 3);
+	spotL->setEnabled(true);
+	spotL->makeSpotlight(vec3(0.0f, 0.0f, -1.0f), vec3(0.0f, 6.0f, -6.0f), 0.999f, 1.0f);
+	spotL->setSpecular(vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	spotL->setDiffuse(vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
 	//// ***** Ambient Light **************
-	//SharedGeneralLighting::setEnabled(GL_LIGHT_ZERO, ambientOn);
+	//SharedGeneralLighting::setEnabled(GL_LIGHT_ZERO, false);
 	//SharedGeneralLighting::setAmbientColor( GL_LIGHT_ZERO, vec4(0.15f, 0.15f, 0.15f, 1.0f));
 
 	//// ***** Positional Light ***************
-	//SharedGeneralLighting::setEnabled(GL_LIGHT_ONE, positionalOn);
+	//SharedGeneralLighting::setEnabled(GL_LIGHT_ONE, false);
 	//SharedGeneralLighting::setDiffuseColor(GL_LIGHT_ONE, vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	//SharedGeneralLighting::setSpecularColor(GL_LIGHT_ONE, vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	//SharedGeneralLighting::setPositionOrDirection(GL_LIGHT_ONE, vec4(5.0f, 10.0f, -10.0f, 1.0f));
 
 	//// ***** Directional Light ***************
-	//SharedGeneralLighting::setEnabled(GL_LIGHT_TWO, directionalOn);
+	//SharedGeneralLighting::setEnabled(GL_LIGHT_TWO, false);
 	//SharedGeneralLighting::setDiffuseColor(GL_LIGHT_TWO, vec4(0.75f, 0.75f, 0.75f, 1.0f));
 	//SharedGeneralLighting::setSpecularColor(GL_LIGHT_TWO, vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	//SharedGeneralLighting::setPositionOrDirection(GL_LIGHT_TWO, vec4(1.0f, 1.0f, 1.0f, 0.0f));
 
-	
+	//spot
+	//SharedGeneralLighting::setEnabled(GL_LIGHT_THREE, true);
+	//SharedGeneralLighting::setIsSpot(GL_LIGHT_THREE, true);
+	//SharedGeneralLighting::setSpotDirection(GL_LIGHT_THREE, vec3(0.0f, 0.0f, -1.0f));
+	//SharedGeneralLighting::setPositionOrDirection(GL_LIGHT_THREE, vec4(0.0f, 0.0f, 0.0f, 1.0f));
+	//SharedGeneralLighting::setSpotCutoffCos(GL_LIGHT_THREE, 0.8f);
+	//SharedGeneralLighting::setSpotExponent(GL_LIGHT_THREE, 1.0f);
+	//SharedGeneralLighting::setDiffuseColor(GL_LIGHT_THREE, vec4(0.75f, 0.75f, 0.75f, 1.0f));
+	//SharedGeneralLighting::setSpecularColor(GL_LIGHT_THREE, vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
 
 } // end setupLighting

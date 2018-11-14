@@ -1,0 +1,51 @@
+﻿  Actor.cpp
+  CircleComponent.cpp
+  Component.cpp
+  ConeMesh.cpp
+  CubeMesh.cpp
+  CylinderMesh.cpp
+  Game.cpp
+  GameBoardMesh.cpp
+  InputComponent.cpp
+  main.cpp
+  Mesh.cpp
+  MeshComponent.cpp
+  ModelMesh.cpp
+  MoveComponent.cpp
+  Random.cpp
+  Renderer.cpp
+  ReparentComponent.cpp
+  Shader.cpp
+  ShapeGame.cpp
+  ShapeGameActor.cpp
+  Generating Code...
+c:\users\paxtoncr\source\repos\cse387\cse387lab7\gamebase3d\gamebase3d\circlecomponent.cpp(21): warning C4172: returning address of local variable or temporary
+c:\users\paxtoncr\source\repos\cse387\cse387lab7\gamebase3d\gamebase3d\actor.cpp(191): warning C4700: uninitialized local variable 'position' used
+  Compiling...
+  SharedGeneralLighting.cpp
+  SharedMaterialProperties.cpp
+  SharedProjectionAndViewing.cpp
+  SharedUniformBlock.cpp
+  SphereMesh.cpp
+  SpriteComponent.cpp
+  Texture.cpp
+  VertexArray.cpp
+  Generating Code...
+  GameBase3D.vcxproj -> C:\Users\paxtoncr\Source\Repos\CSE387\CSE387Lab7\GameBase3D\Debug\GameBase3D.exe
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libfreetype-6.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libogg-0.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libpng16-16.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libvorbis-0.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\libvorbisfile-3.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\SDL2.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\SDL2_image.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\SDL2_mixer.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\SDL2_ttf.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\SDL\lib\win\x86\zlib1.dll
+  10 File(s) copied
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\GLEW\lib\win\x86\glew32.dll
+  1 File(s) copied
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\assimp\lib\assimp-vc140-mt.dll
+  1 File(s) copied
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab7\GameBase3D\GameBase3D\\..\..\external\FreeImage\lib\FreeImage.dll
+  1 File(s) copied
