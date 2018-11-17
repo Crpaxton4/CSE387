@@ -1,0 +1,25 @@
+﻿  Actor.cpp
+  Game.cpp
+  Main.cpp
+  Ship.cpp
+  SpaceGame.cpp
+  SpriteComponent.cpp
+  Generating code
+  359 of 1012 functions (35.5%) were compiled, the rest were copied from previous compilation.
+    70 functions were new in current compilation
+    35 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Game.vcxproj -> C:\Users\paxtoncr\Source\Repos\CSE387\CSE387Lab2\Chapter02\Release\Game.exe
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\libfreetype-6.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\libogg-0.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\libpng16-16.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\libvorbis-0.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\libvorbisfile-3.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\SDL2.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\SDL2_image.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\SDL2_mixer.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\SDL2_ttf.dll
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\SDL\lib\win\x86\zlib1.dll
+  10 File(s) copied
+  C:\Users\paxtoncr\source\repos\CSE387\CSE387Lab2\Chapter02\\..\external\GLEW\lib\win\x86\glew32.dll
+  1 File(s) copied

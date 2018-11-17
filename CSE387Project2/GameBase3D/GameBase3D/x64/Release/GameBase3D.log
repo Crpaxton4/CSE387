@@ -1,0 +1,57 @@
+﻿  Actor.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  CircleComponent.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  Component.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  ConeMesh.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  CubeMesh.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  CylinderMesh.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  Game.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\game.h(10): fatal error C1083: Cannot open include file: 'SDL/SDL.h': No such file or directory
+  GameBoardMesh.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  InputComponent.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  main.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\game.h(10): fatal error C1083: Cannot open include file: 'SDL/SDL.h': No such file or directory
+  Mesh.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  MeshComponent.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\shader.h(10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  ModelMesh.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  MoveComponent.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  PlaneMesh.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  Random.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  Renderer.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\renderer.h(13): fatal error C1083: Cannot open include file: 'SDL/SDL.h': No such file or directory
+  Shader.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\shader.h(10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  ShapeGame.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\game.h(10): fatal error C1083: Cannot open include file: 'SDL/SDL.h': No such file or directory
+  ShapeGameActor.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  Compiling...
+  SharedGeneralLighting.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  SharedMaterialProperties.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  SharedProjectionAndViewing.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  SharedUniformBlock.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  SphereMesh.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory
+  SpriteComponent.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\spritecomponent.h(11): fatal error C1083: Cannot open include file: 'SDL/SDL.h': No such file or directory
+  Texture.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\texture.cpp(11): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  VertexArray.cpp
+c:\users\paxtoncr\source\repos\cse387\cse387project2\gamebase3d\gamebase3d\mathlibsconstsfuncs.h(15): fatal error C1083: Cannot open include file: 'glm/fwd.hpp': No such file or directory

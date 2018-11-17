@@ -1,0 +1,29 @@
+﻿  Actor.cpp
+  Asteroid.cpp
+  CannonBallActor.cpp
+  CircleComponent.cpp
+  Component.cpp
+  Game.cpp
+  InputComponent.cpp
+  Laser.cpp
+  Main.cpp
+  MoveComponent.cpp
+  PhysicalMovementComponent.cpp
+  Random.cpp
+  Ship.cpp
+  SpriteComponent.cpp
+  Generating Code...
+  Game.vcxproj -> C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\Debug\Game.exe
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\libfreetype-6.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\libogg-0.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\libpng16-16.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\libvorbis-0.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\libvorbisfile-3.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\SDL2.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\SDL2_image.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\SDL2_mixer.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\SDL2_ttf.dll
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\SDL\lib\win\x86\zlib1.dll
+  10 File(s) copied
+  C:\Users\Chris\Documents\Repositories\CSE387\CSE387Lab3\\..\external\GLEW\lib\win\x86\glew32.dll
+  1 File(s) copied
