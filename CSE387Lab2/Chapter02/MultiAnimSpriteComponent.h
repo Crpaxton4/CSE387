@@ -2,7 +2,7 @@
 #include "AnimSpriteComponent.h"
 #include "Animation.h"
 
-class MultiAnimSpriteComponent : public AnimSpriteComponent
+class MultiAnimSpriteComponent : public SpriteComponent
 {
 public:
 	MultiAnimSpriteComponent();
@@ -10,6 +10,8 @@ public:
 
 	void Draw(SDL_Renderer* renderer) override;
 	void Update(float deltaTime) override;
+	void SetTexture(SDL_Texture* texure) override;
+
 
 private:
 	int frameHeight;
@@ -17,5 +19,7 @@ private:
 
 	// Collection of individual animations in the sprite sheet
 	std::vector<Animation> animations;
+
+	
 };
 
