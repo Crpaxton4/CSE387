@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{a001993d-11c5-48d4-bf7a-1647ce820b37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source and Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source and Header Files\Actors">
+      <UniqueIdentifier>{388ac820-5cbf-4bfa-86a7-f65cf6af22e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source and Header Files\Components">
+      <UniqueIdentifier>{2c16dc21-2e05-42b5-9891-498fa577e486}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source and Header Files\Games">
+      <UniqueIdentifier>{02622e6d-9da3-4630-997e-6a481244e55c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source and Header Files\Meshes">
+      <UniqueIdentifier>{f93f2677-025f-479c-8697-4cb9081297b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source and Header Files\Physics">
+      <UniqueIdentifier>{99d347f5-d557-4176-ae60-d5df74708d41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source and Header Files\Rendering">
+      <UniqueIdentifier>{c4607117-d483-4716-8757-6a350285742d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source and Header Files\Sound">
+      <UniqueIdentifier>{1a415269-c2f4-47f7-be0e-3b831cdbcf5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source and Header Files\SharedUniforms">
+      <UniqueIdentifier>{a81f9f75-c679-49c0-ad4c-44567fa86da3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source and Header Files\Lights">
+      <UniqueIdentifier>{6dfc9c8d-5ecd-46e0-9b7e-75b46ed1dd6a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor.h">
+      <Filter>Source and Header Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeMesh.h">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Source and Header Files\Games</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshComponent.h">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelMesh.h">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Source and Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeGame.h">
+      <Filter>Source and Header Files\Games</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Source and Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArray.h">
+      <Filter>Source and Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Source and Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeGameActor.h">
+      <Filter>Source and Header Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedGeneralLighting.h">
+      <Filter>Source and Header Files\SharedUniforms</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedMaterialProperties.h">
+      <Filter>Source and Header Files\SharedUniforms</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedProjectionAndViewing.h">
+      <Filter>Source and Header Files\SharedUniforms</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedUniformBlock.h">
+      <Filter>Source and Header Files\SharedUniforms</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLibsConstsFuncs.h">
+      <Filter>Source and Header Files\Games</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Source and Header Files\Games</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereMesh.h">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="ConeMesh.h">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="CylinderMesh.h">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBoardMesh.h">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="ReparentComponent.h">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine.h">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundBaseComponent.h">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundListenerComponent.h">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundReverbZoneComponent.h">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSourceComponent.h">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsEngine.h">
+      <Filter>Source and Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodyMotionState.h">
+      <Filter>Source and Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AmbientLightComponent.h">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLightComponent.h">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="LightComponent.h">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionalLightComponent.h">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLightComponent.h">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source and Header Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeMesh.cpp">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source and Header Files\Games</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshComponent.cpp">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelMesh.cpp">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source and Header Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeGame.cpp">
+      <Filter>Source and Header Files\Games</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source and Header Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArray.cpp">
+      <Filter>Source and Header Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source and Header Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeGameActor.cpp">
+      <Filter>Source and Header Files\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedGeneralLighting.cpp">
+      <Filter>Source and Header Files\SharedUniforms</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedMaterialProperties.cpp">
+      <Filter>Source and Header Files\SharedUniforms</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedProjectionAndViewing.cpp">
+      <Filter>Source and Header Files\SharedUniforms</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedUniformBlock.cpp">
+      <Filter>Source and Header Files\SharedUniforms</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source and Header Files\Games</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Source and Header Files\Games</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereMesh.cpp">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="ConeMesh.cpp">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="CylinderMesh.cpp">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBoardMesh.cpp">
+      <Filter>Source and Header Files\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="ReparentComponent.cpp">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEngine.cpp">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundBaseComponent.cpp">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundListenerComponent.cpp">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundReverbZoneComponent.cpp">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSourceComponent.cpp">
+      <Filter>Source and Header Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsEngine.cpp">
+      <Filter>Source and Header Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBodyMotionState.cpp">
+      <Filter>Source and Header Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Source and Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AmbientLightComponent.cpp">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalLightComponent.cpp">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="LightComponent.cpp">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="PositionalLightComponent.cpp">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLightComponent.cpp">
+      <Filter>Source and Header Files\Lights</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Sprite.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Sprite.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\fragmentShader.fs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\vertexShader.vs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
