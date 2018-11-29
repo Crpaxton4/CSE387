@@ -23,6 +23,8 @@ bool GameBoardMesh::Load( const std::string & fileName, Material darkMat, Materi
 
 	initilizeLightSquares( );
 
+	this->collisionShape = new btBoxShape( btVector3( sideLength/2.0f, sideLength / 2.0f, 0.001f ) );
+
 	return true;
 
 }

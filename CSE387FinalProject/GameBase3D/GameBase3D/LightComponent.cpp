@@ -2,7 +2,7 @@
 #include "Actor.h"
 #include "Game.h"
 
-LightComponent::LightComponent(class Actor* owner, lightSource id, bool enabled) :Component(owner), id(id), enabled(enabled)
+LightComponent::LightComponent(class Actor* owner, lightSource id, bool enabled) :Component(owner), id(id)
 {
 	SharedGeneralLighting::setEnabled(id, enabled);
 }
@@ -10,13 +10,11 @@ LightComponent::LightComponent(class Actor* owner, lightSource id, bool enabled)
 
 void LightComponent::setEnable()
 {
-	enabled = true;
-	SharedGeneralLighting::setEnabled(id, enabled);
+	SharedGeneralLighting::setEnabled(id, true);
 }
 void LightComponent::setDisable()
 {
-	enabled = false;
-	SharedGeneralLighting::setEnabled(id, enabled);
+	SharedGeneralLighting::setEnabled(id, false);
 }
 
 void LightComponent::setAmbientColor(vec4 newAmb)

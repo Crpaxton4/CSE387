@@ -7,12 +7,8 @@ AmbientLightComponent::AmbientLightComponent(class Actor* owner, lightSource id,
 void AmbientLightComponent::ProcessInput(const uint8_t* keyState)
 {
 	if (keyState[SDL_SCANCODE_A]) {
-		if (enabled) {
-			setDisable();
-		}
-		else {
-			setEnable();
-		}
+		
+		SharedGeneralLighting::setEnabled( id, !SharedGeneralLighting::getEnabled( id ) );
 
 	}
 }

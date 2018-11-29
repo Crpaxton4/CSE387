@@ -21,8 +21,8 @@ class SoundBaseComponent : public Component
 
 	FMOD_VECTOR fmod_pos = { 0, 0, 0 };
 	FMOD_VECTOR fmod_vel = { 0, 0, 0 };
-	FMOD_VECTOR fmod_forward = { 0, 0, -1 };
-	FMOD_VECTOR fmod_up = { 0, 1, 0 };
+	FMOD_VECTOR fmod_forward = { 0, 0, 0 };
+	FMOD_VECTOR fmod_up = { 0, 0, 0 };
 
 };
 

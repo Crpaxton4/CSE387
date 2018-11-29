@@ -11,71 +11,87 @@
 bool ModelMesh::Load( class Renderer* renderer, const std::string & filename )
 {
 
-	if( filename == "" ) {
+	// Model loading
+	std::vector<pntVertexData> vData;
+	std::vector<unsigned int> indices;
 
+	// Create an instance of the Importer class
+	Assimp::Importer importer;
+
+	// Load the scene/model and associated meshes into a aiScene object
+	// See http://www.assimp.org/lib_html/class_assimp_1_1_importer.html#afa338a135a56956bd5deb7d238498dde 
+	// for more details. Second argument specifies configuration that is optimized for 
+	// real-time rendering.
+	const aiScene *scene = importer.ReadFile( filename, aiProcessPreset_TargetRealtime_Quality );
+
+	// Check if the scene/model loaded correctly
+	if( !scene ) {
+		std::cerr << "ERROR: Unable to load " << filename <<
+			std::endl << "\t" << importer.GetErrorString( ) << std::endl;
+		return false;
 	}
 	else {
-		// Model loading
-		std::vector<pntVertexData> vData;
-		std::vector<unsigned int> indices;
-
-		// Create an instance of the Importer class
-		Assimp::Importer importer;
-
-		// Load the scene/model and associated meshes into a aiScene object
-		// See http://www.assimp.org/lib_html/class_assimp_1_1_importer.html#afa338a135a56956bd5deb7d238498dde 
-		// for more details. Second argument specifies configuration that is optimized for 
-		// real-time rendering.
-		const aiScene *scene = importer.ReadFile( filename, aiProcessPreset_TargetRealtime_Quality );
-
-		// Check if the scene/model loaded correctly
-		if( !scene ) {
-			std::cerr << "ERROR: Unable to load " << filename <<
-				std::endl << "\t" << importer.GetErrorString( ) << std::endl;
-			return false;
-		}
-		else {
-			std::cout << "Loading Model: " << filename << std::endl;
-		}
-
-		// Iterate through each mesh
-		for( size_t i = 0; i < scene->mNumMeshes; i++ ) {
-			aiMesh *mesh = scene->mMeshes[i];
-			ReadVertexData( mesh, vData, indices );
-
-			// Get the material for the mesh
-			aiMaterial* meshMaterial = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
-
-			Material material;
-
-			// Read in the material properties for this mesh
-			if( mesh->mMaterialIndex >= 0 ) {
-
-				material = readInMaterialProperties( renderer, meshMaterial, filename );
-
-			}
-
-			std::cout << "Number of vertices: " << vData.size( ) << std::endl;
-
-			VertexArray * va = new VertexArray( vData, indices );
-			va->vaoMaterial = material;
-
-			// Push back the VAO and the textureID associated with it.
-			mVertexArrays.push_back( va );
-
-			vData.clear( );
-			indices.clear( );
-		}
-
+		std::cout << "Loading Model: " << filename << std::endl;
 	}
+
+
+	/*
+	This is a concave shape made out of convex sub parts, called child shapes. Each
+	child shape has its own local offset transform, relative to the btCompoundShape. It is a good idea to
+	approximate concave shapes using a collection of convex hulls, and store them in a
+	btCompoundShape.
+	*/
+	// Create compound shape to hold the shapes of the indivicdual meshes
+	btCompoundShape * modelCompondShape = new btCompoundShape( );
+
+	// Iterate through each mesh
+	for( size_t i = 0; i < scene->mNumMeshes; i++ ) {
+
+		// Get the vertex mesh 
+		aiMesh *mesh = scene->mMeshes[i];
+
+		btConvexHullShape * meshCollisionShape = new btConvexHullShape();
+
+		ReadVertexData( mesh, vData, indices, *meshCollisionShape );
+
+		// Get the material for the mesh
+		aiMaterial* meshMaterial = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
+
+		Material material;
+
+		// Read in the material properties for this mesh
+		if( mesh->mMaterialIndex >= 0 ) {
+
+			material = readInMaterialProperties( renderer, meshMaterial, filename );
+
+		}
+
+		//std::cout << "Number of vertices: " << vData.size( ) << std::endl;
+
+		VertexArray * va = new VertexArray( vData, indices ); // Is his a memory leak?
+		va->vaoMaterial = material;
+
+		// Push back the VAO and the textureID associated with it.
+		mVertexArrays.push_back( va );
+
+		// Add the mesh collision shape for collision detection
+		// Do NOT use the default btTransform constructor for this! It apparently makes a zero matrix.
+		// No problem for collision spheres! 
+		modelCompondShape->addChildShape( btTransform( btQuaternion( 0, 0, 0 ) ), meshCollisionShape ); // Is this collision shape going to disapear??
+
+		vData.clear( );
+		indices.clear( );
+	}
+
+	// Save the compond collision shape for this model
+	this->collisionShape = modelCompondShape;
 
 	return true;
 }
 
 
-void ModelMesh::ReadVertexData( aiMesh *mesh, std::vector<pntVertexData> &vertexData, std::vector<unsigned int> &indices )
+void ModelMesh::ReadVertexData( aiMesh *mesh, std::vector<pntVertexData> &vertexData, std::vector<unsigned int> &indices, btConvexHullShape & hull )
 {
-
 	// Read in vertex positions, normals, and texture coordinates. See 
 	// http://www.assimp.org/lib_html/structai_mesh.html for more details
 	if( mesh->HasPositions( ) ) {
@@ -84,6 +100,8 @@ void ModelMesh::ReadVertexData( aiMesh *mesh, std::vector<pntVertexData> &vertex
 			tempPosition.x = mesh->mVertices[i].x;
 			tempPosition.y = mesh->mVertices[i].y;
 			tempPosition.z = mesh->mVertices[i].z;
+
+			hull.addPoint( btVector3( tempPosition.x, tempPosition.y, tempPosition.z ), true );
 
 			glm::vec3 tempNormal;
 

@@ -85,6 +85,9 @@ const vec3 LIGHT_GREEN_RGB(0.56f, 0.93f, 0.56f);
 // Coordinate frames
 enum Frame { WORLD = 0, LOCAL };
 
+// Rigidbody Dynamics
+enum DynamicsState { NONE = 0, KINEMATIC_STATIONARY, KINEMATIC_MOVING, DYNAMIC };
+
 // Local directions
 static const vec3 FORWARD(-UNIT_Z_V3);
 static const vec3 UP(0, 1, 0);

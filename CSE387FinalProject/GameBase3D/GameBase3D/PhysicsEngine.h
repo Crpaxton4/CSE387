@@ -2,7 +2,7 @@
 
 #include "btBulletDynamicsCommon.h"
 #include "MathLibsConstsFuncs.h"
-#include "Actor.h"
+#include "RigidBodyComponent.h"
 
 #include <set>			// For holding sets or collision pairs
 #include <algorithm>    // std::set_difference, std::sort
@@ -12,22 +12,6 @@
 typedef std::pair<const btRigidBody*, const btRigidBody*> CollisionPair;
 typedef std::set<CollisionPair> CollisionPairs;
 
-class SceneNode; // Partial declaration to allow compilation
-
-/**
- * Structure containing data that will be passed to BehaviorScripts. Expand as 
- * necessary to include needed information. CollisionEnter and CollisionExt 
- * methods are responsible for building the studtud
-*/
-struct CollisionData
-{
-	const Actor * otherSceneNode;
-	const btRigidBody * bulletRigidBody;
-
-	CollisionData(const Actor * otherSceneNode, const btRigidBody * bulletRigidBody)
-		:otherSceneNode(otherSceneNode), bulletRigidBody(bulletRigidBody)
-	{}
-};
 
 class PhysicsEngine
 {

@@ -18,12 +18,7 @@ void PositionalLightComponent::OnUpdateWorldTransform()
 void PositionalLightComponent::ProcessInput(const uint8_t* keyState)
 {
 	if (keyState[SDL_SCANCODE_P]) {
-		if (enabled) {
-			setDisable();
-		}
-		else {
-			setEnable();
-		}
+		SharedGeneralLighting::setEnabled( id, !SharedGeneralLighting::getEnabled( id ) );
 
 	}
 }

@@ -23,6 +23,7 @@ Mesh::Mesh()
 
 Mesh::~Mesh()
 {
+	delete collisionShape;
 }
 
 

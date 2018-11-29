@@ -15,11 +15,13 @@
 #include "Texture.h"
 #include "VertexArray.h"
 
-MeshComponent::MeshComponent(Actor* owner)
+MeshComponent::MeshComponent( class Actor* owner, class Mesh * mesh )
 	:Component(owner)
-	,mMesh(nullptr)
+	,mMesh( mesh )
 {
 	mOwner->GetGame()->GetRenderer()->AddMeshComp(this);
+
+	this->collisionShape = mesh->GetCollisionShape( );
 }
 
 MeshComponent::~MeshComponent()
@@ -27,12 +29,15 @@ MeshComponent::~MeshComponent()
 	mOwner->GetGame()->GetRenderer()->RemoveMeshComp(this);
 }
 
+
 void MeshComponent::Draw(Shader* shader)
 {
 	if( mMesh ) {
 
+		float s = mOwner->GetScale( );
+
 		// Set the world transform
-		SharedProjectionAndViewing::setModelingMatrix(mOwner->GetWorldTransformation());
+		SharedProjectionAndViewing::setModelingMatrix(mOwner->GetWorldTransformation() * glm::scale(vec3( s, s, s )));
 
 		// For each mesh of the object, set the active vertex array object, associated
 		// texture, and draw the the mesh onto the screen.

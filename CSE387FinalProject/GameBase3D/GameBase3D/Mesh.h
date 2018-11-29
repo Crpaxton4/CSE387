@@ -20,14 +20,13 @@
 
 #include "SharedMaterialProperties.h"
 
+#include "PhysicsEngine.h"
+
 class Mesh
 {
 public:
 	Mesh();
 	~Mesh();
-
-	// Load
-//	virtual bool Load( class Renderer* renderer, const std::string & fileName = "" ) { return false; };
 
 	// Unload mesh
 	void Unload();
@@ -40,9 +39,11 @@ public:
 
 	int numberOfVertexArrayObjects() const { return mVertexArrays.size(); }
 
+	class btCollisionShape * GetCollisionShape( ) { return collisionShape; }
+
 protected:
 
-
+	class btCollisionShape * collisionShape;
 
 	// Vertex arrays associated with this mesh
 	std::vector<VertexArray*> mVertexArrays;

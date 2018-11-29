@@ -24,6 +24,8 @@
 #include "SoundSourceComponent.h"
 #include "SoundReverbZoneComponent.h"
 
+#include "RigidBodyComponent.h"
+
 ShapeGame::ShapeGame( )
 	:Game( "CSE387 - Final Project")
 {
@@ -35,70 +37,89 @@ void ShapeGame::LoadData( )
 	// Setup lights in the scene
 	ShapeGame::SetupLighting();
 
-	//// Sun
+	// Sun
 	mSunActor = new ShapeGameActor(this);
 	mSunActor->SetPosition(vec3(0, 0, -20));
-	MeshComponent * sunMeshComponent = new MeshComponent(mSunActor);
+	
 	Material sunMat;
-	sunMat.setDiffuseTexture(this->GetRenderer()->GetTexture("Assets/sunmap.jpg")->GetTextureObject());
+	sunMat.setDiffuseTexture( this->GetRenderer( )->GetTexture( "Assets/sunmap.jpg" )->GetTextureObject( ) );
+
 	SphereMesh * sunMesh = new SphereMesh(2.0f);
 	sunMesh->Load("earth sphere", sunMat);
-	sunMeshComponent->SetMesh(sunMesh);
 
-	//// Earth
+	MeshComponent * sunMeshComponent = new MeshComponent(mSunActor, sunMesh);
+
+//	RigidBodyComponent * rg = new RigidBodyComponent( mSunActor, sunMeshComponent, KINEMATIC_STATIONARY );
+
+	// Earth
 	mEarthActor = new ShapeGameActor( this );
-	mEarthActor->SetPosition( vec3( 10, 0, 0 ) );
+	mEarthActor->SetPosition( vec3( 0.5, 0, -20 ) );
 	mEarthActor->SetRotation(glm::rotate(glm::radians(-90.0f), vec3(0, 1, 0)));
 	MoveComponent * earthMoveComponent = new MoveComponent(mEarthActor);
 	earthMoveComponent->SetAngularSpeed(glm::vec3( 0.0f, glm::radians( 1.0f ), 0.0f));
-	MeshComponent * earthMeshComponent = new MeshComponent(mEarthActor);
+
 	Material earthMat;
 	earthMat.setDiffuseTexture( this->GetRenderer( )->GetTexture( "Assets/earthmap.jpg" )->GetTextureObject( ) );
+
 	SphereMesh * earthMesh = new SphereMesh( 1.0f );
 	earthMesh->Load( "earth sphere", earthMat );
-	earthMeshComponent->SetMesh( earthMesh );
 
-	//// Moon
+	MeshComponent * earthMeshComponent = new MeshComponent(mEarthActor, earthMesh);
+
+	SoundSourceComponent * soundComp = new SoundSourceComponent( mEarthActor, "Assets/Footsteps.wav", 0, 50 );
+
+	//RigidBodyComponent * rg2 = new RigidBodyComponent( mEarthActor, earthMeshComponent, DYNAMIC );
+
+	// Moon
 	mMoonActor = new ShapeGameActor(this);
-	MeshComponent * moonMeshComponent = new MeshComponent(mMoonActor);
+	mMoonActor->SetPosition( vec3( -2, 0, 0 ) );
+
 	Material moonMat;
 	moonMat.setDiffuseTexture(this->GetRenderer()->GetTexture("Assets/moonmap.jpg")->GetTextureObject());
+
 	SphereMesh * moonMesh = new SphereMesh(0.25f);
 	moonMesh->Load("moon sphere", moonMat);
-	moonMeshComponent->SetMesh(moonMesh);
-	mMoonActor->SetPosition(vec3(-2, 0, 0));
+
+	MeshComponent * moonMeshComponent = new MeshComponent( mMoonActor, moonMesh );
 	ReparentComponent * reparentComponent = new ReparentComponent(mMoonActor, mSunActor);
 
-	//// Empty Solar System Actor (root of the scene graph)
+	// Empty Solar System Actor (root of the scene graph)
 	ShapeGameActor * emptyActor = new ShapeGameActor(this);
 	emptyActor->SetPosition(vec3(0, 0, -20));
+
 	MoveComponent * emptyMoveComponent = new MoveComponent(emptyActor);
 	emptyMoveComponent->SetAngularSpeed(glm::vec3(0.0f, glm::radians(1.0f), 0.0f));
-	
-	// Add actors to the scene graph
-	this->AddChild(mSunActor);
-	this->AddChild(emptyActor);
-	emptyActor->AddChild(mEarthActor);
-	mEarthActor->AddChild(mMoonActor);
 
-	ShapeGameActor * cameraActor = new ShapeGameActor( this );
-	   
-	this->AddChild( cameraActor );
+	// Model
+	Actor  * mModelActor = new ShapeGameActor( this );
+	mModelActor->SetPosition( vec3( 0.5, 40, -20 ) );
 
+	ModelMesh * modelMesh = new ModelMesh( );
+	modelMesh->Load( this->mRenderer, "Assets/jet_models/F-15C_Eagle.obj" );
+
+	MeshComponent * modelMeshComponent = new MeshComponent( mModelActor, modelMesh );
+
+	// RigidBodyComponent * rg3 = new RigidBodyComponent( mModelActor, modelMeshComponent, DYNAMIC );
+
+	ShapeGameActor * cameraActor = new ShapeGameActor( this ); 
 	cameraActor->SetPosition( vec3( 0, 0, 12 ), WORLD );
 
 	CameraComponent * cam = new CameraComponent( cameraActor );
-
 	this->GetRenderer( )->setActiveCamera( cam );
 
-	//SoundListenerComponent * listComp = new SoundListenerComponent( cameraActor );
+	SoundListenerComponent * listComp = new SoundListenerComponent( cameraActor );
+	
+	SoundReverbZoneComponent * reverb = new SoundReverbZoneComponent( cameraActor );
 
-	//SoundSourceComponent * soundComp = new SoundSourceComponent( cameraActor, "Assets/Footsteps.wav",0,50 );
+	// Add actors to the scene graph
+	this->AddChild( mSunActor );
+	this->AddChild( emptyActor );
+	this->AddChild( cameraActor );
+	this->AddChild( mModelActor );
+	emptyActor->AddChild( mEarthActor );
+	mEarthActor->AddChild( mMoonActor );
 
-	//soundComp->play( true );
-
-	//SoundReverbZoneComponent * reverb = new SoundReverbZoneComponent( cameraActor );
-
+	soundComp->play( true );
 }
 
 void ShapeGame::SetupLighting()
@@ -118,7 +139,7 @@ void ShapeGame::SetupLighting()
 
 	//directional Light
 	ShapeGameActor * dirLightActor = new ShapeGameActor( this );
-	dirLightActor->SetRotation( glm::rotate(glm::radians(45.0f), vec3(0,1,0)) * glm::rotate( glm::radians( -45.0f ), vec3( 1, 0, 0 ) ) );
+	dirLightActor->SetRotation( glm::rotate( glm::radians( 45.0f ), vec3( 0, 1, 0 ) ) * glm::rotate( glm::radians( -45.0f ), vec3( 1, 0, 0 ) ) );
 	//set rotation
 	DirectionalLightComponent * dirLightComp = new DirectionalLightComponent( dirLightActor, GL_LIGHT_TWO, true );
 	dirLightComp->setDiffuseColor( vec4( 0.75f, 0.75f, 0.75f, 1.0f ) );

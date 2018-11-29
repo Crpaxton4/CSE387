@@ -1,6 +1,6 @@
 #include "PhysicsEngine.h"
 
-#include "RigidBodyMotionState.h"
+#include "RigidBodyComponent.h"
 #include <iostream>
 
 // Static Data Member Definitions
@@ -171,21 +171,21 @@ void PhysicsEngine::collisionEventCallback(btDynamicsWorld *world, btScalar time
 
 void PhysicsEngine::CollisionEnter(const btRigidBody * rigBody0, const btRigidBody * rigBody1)
 {
-	const RigidBodyMotionState* moState0 = static_cast<const RigidBodyMotionState*>(rigBody0->getMotionState());
-	const RigidBodyMotionState* moState1 = static_cast<const RigidBodyMotionState*>(rigBody1->getMotionState());
+	const RigidBodyComponent* moState0 = static_cast<const RigidBodyComponent*>( rigBody0->getMotionState( ) );
+	const RigidBodyComponent* moState1 = static_cast<const RigidBodyComponent*>( rigBody1->getMotionState( ) );
 
-//	moState0->sceneNodePtr->CollisionEnter(CollisionData(moState1->sceneNodePtr, rigBody1));
-//	moState1->sceneNodePtr->CollisionEnter(CollisionData(moState0->sceneNodePtr, rigBody0));
+	moState0->CollisionEnter(moState1);
+	moState1->CollisionEnter(moState0);
 
 } // end CollisionEnter
 
 void PhysicsEngine::CollisionExit(const btRigidBody * rigBody0, const btRigidBody * rigBody1)
 {
-	const RigidBodyMotionState* moState0 = static_cast<const RigidBodyMotionState*>(rigBody0->getMotionState());
-	const RigidBodyMotionState* moState1 = static_cast<const RigidBodyMotionState*>(rigBody1->getMotionState());
+	const RigidBodyComponent* moState0 = static_cast<const RigidBodyComponent*>( rigBody0->getMotionState( ) );
+	const RigidBodyComponent* moState1 = static_cast<const RigidBodyComponent*>( rigBody1->getMotionState( ) );
 
-//	moState0->sceneNodePtr->CollisionExit(CollisionData(moState1->sceneNodePtr, rigBody1));
-//	moState1->sceneNodePtr->CollisionExit(CollisionData(moState0->sceneNodePtr, rigBody0));
+	moState0->CollisionExit( moState1 );
+	moState1->CollisionExit( moState0 );
 
 } // end CollisionExit
 

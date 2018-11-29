@@ -28,13 +28,10 @@ void SpotLightComponent::OnUpdateWorldTransform( )
 
 void SpotLightComponent::ProcessInput( const uint8_t* keyState )
 {
+
 	if( keyState[SDL_SCANCODE_S] ) {
-		if( enabled ) {
-			setDisable( );
-		}
-		else {
-			setEnable( );
-		}
+	
+		SharedGeneralLighting::setEnabled( id, !SharedGeneralLighting::getEnabled( id ) );
 
 	}
 }

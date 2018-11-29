@@ -80,6 +80,8 @@ bool SphereMesh::Load( const std::string & fileName, Material material )
 	stackAngles.clear( );
 	sliceAngles.clear( );
 
+	this->collisionShape = new btSphereShape( radius );
+
 	return true;
 }
 

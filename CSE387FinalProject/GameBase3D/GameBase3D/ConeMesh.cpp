@@ -19,6 +19,9 @@ bool ConeMesh::Load( const std::string & fileName, Material material )
 	initializeConeBottom( material );
 	initializeConeBody( material );
 
+	// ************ Shape will not match Cone. Cone base is at Z equals 0.
+	this->collisionShape = new btCylinderShapeZ( btVector3( base, height*0.5f, 0 ) );
+
 	return true;
 }
 

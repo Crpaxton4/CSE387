@@ -16,11 +16,7 @@ void DirectionalLightComponent::OnUpdateWorldTransform()
 void DirectionalLightComponent::ProcessInput(const uint8_t* keyState)
 {
 	if (keyState[SDL_SCANCODE_D]) {
-		if (enabled) {
-			setDisable();
-		}
-		else {
-			setEnable();
-		}
+		
+		SharedGeneralLighting::setEnabled( id, !SharedGeneralLighting::getEnabled( id ) );
 	}
 }

@@ -17,7 +17,7 @@ class ModelMesh :
 
 	protected:
 
-	void ReadVertexData( aiMesh * mesh, std::vector<pntVertexData>& vertexData, std::vector<unsigned int>& indices );
+	void ReadVertexData( aiMesh *mesh, std::vector<pntVertexData> &vertexData, std::vector<unsigned int> &indices, btConvexHullShape & hull );
 	std::string GetDirectoryPath( std::string sFilePath );
 
 	Material readInMaterialProperties( Renderer* renderer, aiMaterial* assimpMaterial, std::string filename );

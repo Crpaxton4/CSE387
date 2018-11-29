@@ -86,6 +86,8 @@ bool CubeMesh::Load( const std::string & fileName, Material material )
 
 	va->vaoMaterial = material;
 
+	this->collisionShape = new btBoxShape( btVector3( halfWidth, halfHeight, halfDepth ) );
+
 	return true;
 
 }

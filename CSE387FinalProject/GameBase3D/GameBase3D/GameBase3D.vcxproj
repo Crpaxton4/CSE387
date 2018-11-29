@@ -164,6 +164,7 @@ xcopy "$(ProjectDir)\..\..\external\Bullet\lib\*.dll" "$(OutDir)" /i /s /y</Comm
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AmbientLightComponent.h" />
     <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="CircleComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConeMesh.h" />
     <ClInclude Include="CubeMesh.h" />
@@ -183,7 +184,7 @@ xcopy "$(ProjectDir)\..\..\external\Bullet\lib\*.dll" "$(OutDir)" /i /s /y</Comm
     <ClInclude Include="Random.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ReparentComponent.h" />
-    <ClInclude Include="RigidBodyMotionState.h" />
+    <ClInclude Include="RigidBodyComponent.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShapeGame.h" />
     <ClInclude Include="ShapeGameActor.h" />
@@ -206,6 +207,7 @@ xcopy "$(ProjectDir)\..\..\external\Bullet\lib\*.dll" "$(OutDir)" /i /s /y</Comm
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AmbientLightComponent.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
+    <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConeMesh.cpp" />
     <ClCompile Include="CubeMesh.cpp" />
@@ -225,7 +227,7 @@ xcopy "$(ProjectDir)\..\..\external\Bullet\lib\*.dll" "$(OutDir)" /i /s /y</Comm
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ReparentComponent.cpp" />
-    <ClCompile Include="RigidBodyMotionState.cpp" />
+    <ClCompile Include="RigidBodyComponent.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShapeGame.cpp" />
     <ClCompile Include="ShapeGameActor.cpp" />

@@ -18,6 +18,6 @@ protected:
 	vec4 ambientColor = vec4(0, 0, 0, 1);;
 	vec4 diffuseColor = vec4(0, 0, 0, 1);
 	vec4 specularColor = vec4(0, 0, 0, 1);
-	bool enabled = true;
+
 };
 

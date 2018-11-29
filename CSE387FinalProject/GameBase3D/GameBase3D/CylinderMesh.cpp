@@ -21,6 +21,9 @@ bool CylinderMesh::Load( const std::string & fileName, Material material  )
 	initializeCylinderBody( material );
 	initializeCylinderTop( material );
 
+	// ************ Shape will not match cylinder. Cylinder base is at Z equals 0.
+	this->collisionShape = new btCylinderShapeZ( btVector3( radius, height*0.5f, radius ));
+
 	return true;
 }
 

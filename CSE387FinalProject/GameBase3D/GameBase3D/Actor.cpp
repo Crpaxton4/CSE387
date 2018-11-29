@@ -20,7 +20,7 @@ Actor::Actor( Game* game )
 	, mGame( game )
 	, mRecomputeLocalTransform( true )
 {
-	//mGame->AddActor(this);
+
 }
 
 Actor::~Actor( )
@@ -91,6 +91,9 @@ void Actor::ActorInput( const uint8_t* keyState )
 
 void Actor::SetLocalTransform( glm::mat4 transform )
 {
+	this->mRecomputeLocalTransform = true;
+	ComputeLocalTransform( );
+
 	glm::vec3 scale;
 	glm::quat rotation;
 	glm::vec3 translation;
@@ -98,11 +101,12 @@ void Actor::SetLocalTransform( glm::mat4 transform )
 	glm::vec4 perspective;
 	glm::decompose( transform, scale, rotation, translation, skew, perspective );
 
-	mScale = ( scale.x + scale.y + scale.z ) / 3.0f;
+	//mScale = ( scale.x + scale.y + scale.z ) / 3.0f;
 	mPosition = translation;
 	mRotation = glm::toMat4( rotation );
 
 	this->mRecomputeLocalTransform = true;
+	ComputeLocalTransform( );
 }
 
 void Actor::ComputeLocalTransform( )
@@ -151,20 +155,21 @@ void Actor::RemoveComponent( Component* component )
 
 float Actor::GetScale( Frame frame )
 {
-	if( frame == Frame::LOCAL ) {
-		// Get the scale in local coordinates
-		return mScale;
-	}
-	else {
-		// Get the scale in world coordinates
-		float localScale = mScale;
-		if( this->parent == nullptr ) {
-			return localScale;
-		}
-		else {
-			return this->parent->GetScale( frame ) * localScale;
-		}
-	}
+	return mScale;
+	//if( frame == Frame::LOCAL ) {
+	//	// Get the scale in local coordinates
+	//	return mScale;
+	//}
+	//else {
+	//	// Get the scale in world coordinates
+	//	float localScale = mScale;
+	//	if( this->parent == nullptr ) {
+	//		return localScale;
+	//	}
+	//	else {
+	//		return this->parent->GetScale( frame ) * localScale;
+	//	}
+	//}
 }
 
 glm::vec3 Actor::GetPosition( Frame frame )
@@ -203,19 +208,24 @@ glm::mat4 Actor::GetRotation( Frame frame )
 void Actor::SetScale( float scale, Frame frame )
 {
 	mRecomputeLocalTransform = true;
-	if( frame == Frame::LOCAL ) {
-		mScale = scale;
-	}
-	else {
-		if( this->parent == nullptr ) {
-			mScale = scale;
-		}
-		else {
-			float parentWorldScale = this->parent->GetScale( Frame::WORLD );
-			float parentWorldScaleInverse = 1.0f / parentWorldScale;
-			mScale = parentWorldScaleInverse * scale;
-		}
-	}
+
+	mScale = scale;
+
+	//if( frame == Frame::LOCAL ) {
+	//	mScale = scale;
+	//}
+	//else {
+	//	if( this->parent == nullptr ) {
+	//		mScale = scale;
+	//	}
+	//	else {
+	//		float parentWorldScale = this->parent->GetScale( Frame::WORLD );
+	//		float parentWorldScaleInverse = 1.0f / parentWorldScale;
+	//		mScale = parentWorldScaleInverse * scale;
+	//	}
+	//}
+
+	ComputeLocalTransform( );
 }
 
 void Actor::SetPosition( glm::vec3 position, Frame frame )
@@ -230,6 +240,8 @@ void Actor::SetPosition( glm::vec3 position, Frame frame )
 		glm::vec4 worldPosition = glm::vec4( position, 1.0f );
 		mPosition = glm::inverse( GetParentWorldTransform( ) ) * worldPosition;
 	}
+
+	ComputeLocalTransform( );
 }
 
 void Actor::SetRotation( glm::mat4 rotation, Frame frame )
