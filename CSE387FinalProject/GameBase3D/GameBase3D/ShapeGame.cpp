@@ -49,11 +49,11 @@ void ShapeGame::LoadData( )
 
 	MeshComponent * sunMeshComponent = new MeshComponent(mSunActor, sunMesh);
 
-//	RigidBodyComponent * rg = new RigidBodyComponent( mSunActor, sunMeshComponent, KINEMATIC_STATIONARY );
+	RigidBodyComponent * rg = new RigidBodyComponent( mSunActor, sunMeshComponent, KINEMATIC_STATIONARY );
 
 	// Earth
 	mEarthActor = new ShapeGameActor( this );
-	mEarthActor->SetPosition( vec3( 0.5, 0, -20 ) );
+	mEarthActor->SetPosition( vec3( 0.5, 20, -20 ) );
 	mEarthActor->SetRotation(glm::rotate(glm::radians(-90.0f), vec3(0, 1, 0)));
 	MoveComponent * earthMoveComponent = new MoveComponent(mEarthActor);
 	earthMoveComponent->SetAngularSpeed(glm::vec3( 0.0f, glm::radians( 1.0f ), 0.0f));
@@ -68,7 +68,7 @@ void ShapeGame::LoadData( )
 
 	SoundSourceComponent * soundComp = new SoundSourceComponent( mEarthActor, "Assets/Footsteps.wav", 0, 50 );
 
-	//RigidBodyComponent * rg2 = new RigidBodyComponent( mEarthActor, earthMeshComponent, DYNAMIC );
+	RigidBodyComponent * rg2 = new RigidBodyComponent( mEarthActor, earthMeshComponent, DYNAMIC );
 
 	// Moon
 	mMoonActor = new ShapeGameActor(this);
@@ -99,7 +99,7 @@ void ShapeGame::LoadData( )
 
 	MeshComponent * modelMeshComponent = new MeshComponent( mModelActor, modelMesh );
 
-	// RigidBodyComponent * rg3 = new RigidBodyComponent( mModelActor, modelMeshComponent, DYNAMIC );
+	RigidBodyComponent * rg3 = new RigidBodyComponent( mModelActor, modelMeshComponent, DYNAMIC );
 
 	ShapeGameActor * cameraActor = new ShapeGameActor( this ); 
 	cameraActor->SetPosition( vec3( 0, 0, 12 ), WORLD );
