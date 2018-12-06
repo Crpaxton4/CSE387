@@ -25,11 +25,12 @@ void CameraComponent::setViewingTransformation( )
 	width = mOwner->GetGame( )->GetRenderer( )->GetScreenWidth( );
 	height = mOwner->GetGame( )->GetRenderer( )->GetScreenHeight( );
 
-	glViewport( static_cast<GLint>(xLowerLeft * width), static_cast<GLint>( yLowerLeft * height), static_cast<GLint>( viewPortWidth * width ), static_cast<GLint>( viewPortHeight * height) );
+	glViewport( static_cast<GLint>(xLowerLeft * width), static_cast<GLint>( yLowerLeft * height),
+				static_cast<GLint>( viewPortWidth * width ), static_cast<GLint>( viewPortHeight * height) );
 
 	SharedProjectionAndViewing::setViewMatrix( glm::inverse(mOwner->GetWorldTransformation()) );
 
-	GLfloat aspect = static_cast<float>(width) / height;
+	GLfloat aspect = static_cast<float>(viewPortWidth * width) / (viewPortHeight * height); // This needs to be changed to used the dimensions of the viewport and
 
 	mat4 projMat = glm::perspective( glm::radians( 45.0f ), aspect, 1.0f, 200.0f );
 

@@ -13,7 +13,7 @@
 
 MoveComponent::MoveComponent(class Actor* owner, int updateOrder)
 :Component(owner, updateOrder)
-,mAngularEulerSpeeds(vec3(0.0f, 0.0f , 0.0f ))
+,mAngularEulerSpeeds(vec3(1.0f, 0.0f , 0.0f ))
 ,mForwardSpeed(0.0f)
 {
 	

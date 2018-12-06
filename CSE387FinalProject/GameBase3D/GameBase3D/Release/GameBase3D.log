@@ -1,9 +1,6 @@
-﻿  ShapeGame.cpp
-c:\users\paxtoncr\source\repos\cse387\cse387finalproject\gamebase3d\gamebase3d\shapegame.cpp(52): warning C4316: 'RigidBodyComponent': object allocated on the heap may not be aligned 16
-c:\users\paxtoncr\source\repos\cse387\cse387finalproject\gamebase3d\gamebase3d\shapegame.cpp(71): warning C4316: 'RigidBodyComponent': object allocated on the heap may not be aligned 16
-c:\users\paxtoncr\source\repos\cse387\cse387finalproject\gamebase3d\gamebase3d\shapegame.cpp(102): warning C4316: 'RigidBodyComponent': object allocated on the heap may not be aligned 16
+﻿  MoveComponent.cpp
   Generating code
-  1 of 3095 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 3095 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

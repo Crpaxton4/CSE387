@@ -189,6 +189,13 @@ protected:
 	// Transform
 	mat4 mLocalTransform;
 
+	/*
+	orien orien orien pos
+	orien orien orien pos
+	orien orien orien pos
+	x     x     x     pos
+	
+	*/
 
 	// Local position, scale, and rotation;
 	vec3 mPosition;

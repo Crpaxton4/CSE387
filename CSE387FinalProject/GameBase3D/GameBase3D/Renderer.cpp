@@ -145,6 +145,8 @@ void Renderer::Draw()
 	// Set the mesh shader active
 	mMeshShader->SetActive();
 
+	// THERE NEEDS TO BE A FOR LOOP AROUND THIS SO THAT ALL CAMERAS ARE RENDERED
+
 	// Update view-projection and viewing matrices
 	activeCamera->setViewingTransformation( );
 	
@@ -152,6 +154,8 @@ void Renderer::Draw()
 	{
 		mc->Draw(mMeshShader);
 	}
+
+	// END FOR LOOP
 
 	// Draw all sprite components
 	// Disable depth testing
