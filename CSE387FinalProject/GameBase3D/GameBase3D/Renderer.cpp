@@ -146,15 +146,15 @@ void Renderer::Draw()
 	mMeshShader->SetActive();
 
 	// THERE NEEDS TO BE A FOR LOOP AROUND THIS SO THAT ALL CAMERAS ARE RENDERED
+	for (CameraComponent* cam : CameraComponent::activeCameras) {
+		// Update view-projection and viewing matrices
+		cam->setViewingTransformation( );
 
-	// Update view-projection and viewing matrices
-	activeCamera->setViewingTransformation( );
-	
-	for (auto mc : mMeshComps)
-	{
-		mc->Draw(mMeshShader);
+		for (auto mc : mMeshComps)
+		{
+			mc->Draw(mMeshShader);
+		}
 	}
-
 	// END FOR LOOP
 
 	// Draw all sprite components

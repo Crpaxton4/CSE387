@@ -13,8 +13,8 @@
 
 MoveComponent::MoveComponent(class Actor* owner, int updateOrder)
 :Component(owner, updateOrder)
-,mAngularEulerSpeeds(vec3(1.0f, 0.0f , 0.0f ))
 ,mForwardSpeed(0.0f)
+,rotateXYSpeeds(vec2(0.0, 0.0))
 {
 	
 }
@@ -22,9 +22,16 @@ MoveComponent::MoveComponent(class Actor* owner, int updateOrder)
 void MoveComponent::Update(float deltaTime)
 {
 
-		mOwner->SetRotation( mOwner->GetRotation( ) * 
-							 glm::rotate(mAngularEulerSpeeds.y, glm::normalize(mAngularEulerSpeeds )));
-	
+	vec3 xBase = glm::normalize(glm::cross(mOwner->GetForward(), vec3(0.0, 1.0, 0.0)));
+	vec3 yBase = glm::normalize(glm::cross(xBase, mOwner->GetForward()));
+
+	mat4 xRotation = glm::rotate(glm::radians(rotateXYSpeeds.x), xBase);
+	mat4 yRotation = glm::rotate(glm::radians(rotateXYSpeeds.y), yBase);
+
+	mat4 rotation = mOwner->GetRotation() * yRotation * xRotation;
+
+		mOwner->SetRotation( rotation );
+
 	if (!NearZero(mForwardSpeed))
 	{
 		vec3 pos = mOwner->GetPosition();

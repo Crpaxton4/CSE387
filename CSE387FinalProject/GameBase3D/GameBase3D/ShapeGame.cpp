@@ -13,6 +13,7 @@
 #include "AmbientLightComponent.h"
 #include "DirectionalLightComponent.h"
 #include "SpotLightComponent.h"
+#include "InputComponent.h"
 #include "CubeMesh.h"
 #include "SphereMesh.h"
 #include "CylinderMesh.h"
@@ -56,7 +57,7 @@ void ShapeGame::LoadData( )
 	mEarthActor->SetPosition( vec3( 0.5, 20, -20 ) );
 	mEarthActor->SetRotation(glm::rotate(glm::radians(-90.0f), vec3(0, 1, 0)));
 	MoveComponent * earthMoveComponent = new MoveComponent(mEarthActor);
-	earthMoveComponent->SetAngularSpeed(glm::vec3( 0.0f, glm::radians( 1.0f ), 0.0f));
+	//earthMoveComponent->SetAngularSpeed(glm::vec3( 0.0f, glm::radians( 1.0f ), 0.0f));
 
 	Material earthMat;
 	earthMat.setDiffuseTexture( this->GetRenderer( )->GetTexture( "Assets/earthmap.jpg" )->GetTextureObject( ) );
@@ -66,7 +67,7 @@ void ShapeGame::LoadData( )
 
 	MeshComponent * earthMeshComponent = new MeshComponent(mEarthActor, earthMesh);
 
-	SoundSourceComponent * soundComp = new SoundSourceComponent( mEarthActor, "Assets/Footsteps.wav", 0, 50 );
+	SoundSourceComponent * soundComp = new SoundSourceComponent( mSunActor, "Assets/Footsteps.wav", 0, 50 );
 
 	RigidBodyComponent * rg2 = new RigidBodyComponent( mEarthActor, earthMeshComponent, DYNAMIC );
 
@@ -88,7 +89,7 @@ void ShapeGame::LoadData( )
 	emptyActor->SetPosition(vec3(0, 0, -20));
 
 	MoveComponent * emptyMoveComponent = new MoveComponent(emptyActor);
-	emptyMoveComponent->SetAngularSpeed(glm::vec3(0.0f, glm::radians(1.0f), 0.0f));
+	//emptyMoveComponent->SetAngularSpeed(glm::vec3(0.0f, glm::radians(1.0f), 0.0f));
 
 	// Model
 	Actor  * mModelActor = new ShapeGameActor( this );
@@ -105,7 +106,9 @@ void ShapeGame::LoadData( )
 	cameraActor->SetPosition( vec3( 0, 0, 12 ), WORLD );
 
 	CameraComponent * cam = new CameraComponent( cameraActor );
-	this->GetRenderer( )->setActiveCamera( cam );
+	//this->GetRenderer( )->setActiveCamera( cam );
+	CameraComponent::activeCameras.push_back(cam);
+	InputComponent* input = new InputComponent(cameraActor);
 
 	SoundListenerComponent * listComp = new SoundListenerComponent( cameraActor );
 	

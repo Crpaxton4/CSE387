@@ -5,6 +5,7 @@
 #include <SDL/SDL.h>
 #include "SharedProjectionAndViewing.h"
 
+std::vector<CameraComponent*> CameraComponent::activeCameras;
 
 CameraComponent::CameraComponent( class Actor* owner, int updateOrder )
 	:Component( owner )

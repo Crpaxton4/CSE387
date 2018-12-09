@@ -60,4 +60,3 @@ class CameraComponent : public Component
 	int depth = 0;
 
 };
-

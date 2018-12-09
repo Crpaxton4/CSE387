@@ -8,7 +8,8 @@
 
 #include "InputComponent.h"
 #include "Actor.h"
-
+#include "SDL/SDL_scancode.h"
+#include <iostream>
 InputComponent::InputComponent(class Actor* owner)
 :MoveComponent(owner)
 ,mForwardKey(0)
@@ -21,28 +22,54 @@ InputComponent::InputComponent(class Actor* owner)
 
 void InputComponent::ProcessInput(const uint8_t* keyState)
 {
-	// Calculate forward speed for MoveComponent
-	float forwardSpeed = 0.0f;
-	if (keyState[mForwardKey])
-	{
-		forwardSpeed += mMaxForwardSpeed;
-	}
-	if (keyState[mBackKey])
-	{
-		forwardSpeed -= mMaxForwardSpeed;
-	}
-	SetForwardSpeed(forwardSpeed);
+	float xRotation = 0.0f;
+	float yRotation = 0.0f;
 
-	//// Calculate angular speed for MoveComponent
-	//float angularSpeed = 0.0f;
-	//if (keyState[mClockwiseKey])
-	//{
-	//	angularSpeed.z += mMaxAngularSpeed;
-	//}
-	//if (keyState[mCounterClockwiseKey])
-	//{
-	//	angularSpeed -= mMaxAngularSpeed;
-	//}
+	if (keyState[SDL_SCANCODE_UP]) {
+		xRotation += 0.5f;
+		std::cout << "Up" << std::endl;
+	}
 
-	//SetAngularSpeed(angularSpeed);
+	if (keyState[SDL_SCANCODE_DOWN]) {
+		xRotation -= 0.5f;
+		std::cout << "Down" << std::endl;
+	}
+
+	if (keyState[SDL_SCANCODE_LEFT]) {
+		yRotation += 0.5f;
+		std::cout << "Left" << std::endl;
+	}
+
+	if (keyState[SDL_SCANCODE_RIGHT]) {
+		yRotation -= 0.5f;
+		std::cout << "Right" << std::endl;
+	}
+
+
+	setXRotation(xRotation);
+	setYRotation(yRotation);
+
+	vec3 pos = mOwner->GetPosition();
+
+	vec3 forward = mOwner->GetForward();
+
+	vec3 lat = glm::normalize(glm::cross(forward, vec3(0, 1, 0)));
+
+	if (keyState[SDL_SCANCODE_W]) {
+		pos += 0.5f * forward;
+	}
+
+	if (keyState[SDL_SCANCODE_S]) {
+		pos -= 0.5f * forward;
+	}
+
+	if (keyState[SDL_SCANCODE_A]) {
+		pos -= 0.5f * lat;
+	}
+
+	if (keyState[SDL_SCANCODE_D]) {
+		pos += 0.5f * lat;
+	}
+
+	mOwner->SetPosition(pos, LOCAL);
 }

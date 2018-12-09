@@ -12,6 +12,7 @@
 #include <unordered_map>
 #include <SDL/SDL.h>
 #include "MathLibsConstsFuncs.h"
+#include "CameraComponent.h"
 
 
 class Renderer
@@ -40,7 +41,7 @@ public:
 
 	void Resize( );
 
-	void setActiveCamera( class CameraComponent * camera ) { activeCamera = camera; }
+	//void setActiveCamera( class CameraComponent * camera ) { activeCamera = camera; }
 
 protected:
 	bool LoadShaders();
@@ -85,5 +86,5 @@ protected:
 	// Current window clear color
 	vec4 mClearColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
-	class CameraComponent * activeCamera;
+	//class CameraComponent * activeCamera;
 };

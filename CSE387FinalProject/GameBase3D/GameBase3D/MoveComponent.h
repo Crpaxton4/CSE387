@@ -17,11 +17,13 @@ public:
 	MoveComponent(class Actor* owner, int updateOrder = 10);
 	void Update(float deltaTime) override;
 	
-	vec3 GetAngularSpeed() const { return mAngularEulerSpeeds; }
 	float GetForwardSpeed() const { return mForwardSpeed; }
-	void SetAngularSpeed(vec3 eulerSpeeds) { mAngularEulerSpeeds = eulerSpeeds; }
 	void SetForwardSpeed(float speed) { mForwardSpeed = speed; }
+
+	void setXRotation(float rot) { rotateXYSpeeds.x = rot; }
+	void setYRotation(float rot) { rotateXYSpeeds.y = rot; }
+	vec2 getXYRotations() { return rotateXYSpeeds; }
 private:
-	vec3 mAngularEulerSpeeds;
+	vec2 rotateXYSpeeds;
 	float mForwardSpeed;
 };
